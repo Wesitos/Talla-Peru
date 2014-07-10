@@ -1,0 +1,191 @@
+@import "nib"
+@import "/lib/normalize.styl"
+@import "/lib/reset.styl"
+@import "/lib/variables.styl"
+//@import "/lib/mixins.styl"
+
+
+/*------------------------------------*\
+    $ICON FONTS
+\*------------------------------------*/
+@font-face {
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon.eot?-mw8z0o');
+	src:url('../fonts/icomoon.eot?#iefix-mw8z0o') format('embedded-opentype'),
+		url('../fonts/icomoon.woff?-mw8z0o') format('woff'),
+		url('../fonts/icomoon.ttf?-mw8z0o') format('truetype'),
+		url('../fonts/icomoon.svg?-mw8z0o#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-phone:before {
+	content: "\e600";
+}
+.icon-envelope:before {
+	content: "\e601";
+}
+.icon-menu:before {
+	content: "\e602";
+}
+
+
+/*------------------------------------*\
+    $MIXINS
+\*------------------------------------*/
+max-width-center(n)
+	max-width n
+	margin-left auto
+	margin-right auto
+
+
+/*------------------------------------*\
+    $BASE
+\*------------------------------------*/
+body
+	font-family basefont
+	font-size basefontsize * 1px
+
+
+/*------------------------------------*\
+    $TEXTS
+\*------------------------------------*/
+.main-title
+	text-align center
+	font-size 2em
+	color basecolor-dark
+
+.section-title
+	font-size 1.8em
+	color white
+
+.slide-title
+	font-size 2.25em
+	line-height 1.45em
+	letter-spacing 0.5px
+	color white
+
+.slide-subtitle
+	font-size 1.55em
+	font-style italic
+	font-family secondaryfont
+	color white
+	line-height 1.4em
+
+.icon-menu
+	color white
+	font-size 20px
+
+
+/*------------------------------------*\
+    $BUTTONS
+\*------------------------------------*/
+.button
+	font-weight bold
+	color white
+	padding 1.5em 3.2em
+	border-radius 8px
+	font-size 0.8em
+	text-transform uppercase
+	letter-spacing 0.2em
+	cursor pointer
+	transition 0.15s all
+	outline 0
+	&--base
+		background-color basecolor
+		&:hover
+			background-color basecolor-bright
+	&--secondary
+		background-color secondarycolor
+		&:hover
+			background-color secondarycolor-bright
+
+
+/*------------------------------------*\
+    $SECTIONS
+\*------------------------------------*/
+.menu
+	background-color basecolor-semi-bright
+	&__icon
+		text-align center
+		padding-top 0.25em
+		padding-bottom 0.25em
+		cursor pointer
+	&__options-list
+		display none
+
+@media screen and (min-width: 800px)
+	.menu
+		&__icon
+			display none
+		&__options-list
+			display block
+
+.header
+	padding-top 1em
+	padding-bottom 1em
+
+.slide-cotent
+	//overflow hidden
+	//background-color red
+
+.slide
+	background-image url("../img/slide1.jpg")
+	background-size cover
+	background-position center center
+	//background-color red
+	overflow hidden
+	//position relative
+	&__content
+		background-color green
+		display table
+		max-width 45%
+		margin-top 2em
+		margin-bottom 5em
+		&--left
+			float left
+		&--right
+			float right
+	&__subtitle
+		margin-top 1em
+		margin-bottom 2em
+
+.personalize
+	background linear-gradient(top, rgba(basecolor,0.82) 0%, rgba(basecolor,1) 22%, rgba(basecolor,1) 100%)
+	padding-top 1.5em
+	padding-bottom 1.5em
+
+
+/*------------------------------------*\
+    $UTILITY
+\*------------------------------------*/
+.u-page-max-width
+	max-width-center page-max-witdh * 1px
+
+.u-inner-padding
+	padding-left ((100 - inner-page-width-mobile) / 2) * 1%
+	padding-right ((100 - inner-page-width-mobile) / 2) * 1%
+
+@media screen and (min-width: 800px)
+	.u-inner-padding
+		padding-left ((100 - inner-page-width-tablet) / 2) * 1%
+		padding-right ((100 - inner-page-width-tablet) / 2) * 1%
+
+@media screen and (min-width: 1024px)
+	.u-inner-padding
+		padding-left ((100 - inner-page-width-desktop) / 2) * 1%
+		padding-right ((100 - inner-page-width-desktop) / 2) * 1%
