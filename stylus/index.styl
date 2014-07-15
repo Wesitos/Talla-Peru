@@ -1,13 +1,17 @@
 @import "nib"
-@import "/lib/normalize.styl"
-@import "/lib/reset.styl"
-@import "/lib/variables.styl"
-//@import "/lib/mixins.styl"
+@import "normalize.styl"
+@import "reset.styl"
+@import "variables.styl"
 
 
 /*------------------------------------*\
-    $ICON FONTS
+    $FONTS
 \*------------------------------------*/
+@font-face{
+   font-family 'Gotham'
+   src url('../fonts/Gotham-Book.otf')
+}
+
 @font-face {
 	font-family: 'icomoon';
 	src:url('../fonts/icomoon.eot?-mw8z0o');
@@ -52,6 +56,14 @@ max-width-center(n)
 	margin-left auto
 	margin-right auto
 
+padding-top-bottom(n)
+	padding-top n
+	padding-bottom n
+
+padding-left-right(n)
+	padding-left n
+	padding-right n
+
 
 /*------------------------------------*\
     $BASE
@@ -59,6 +71,7 @@ max-width-center(n)
 body
 	font-family basefont
 	font-size basefontsize * 1px
+	background-color gray
 
 
 /*------------------------------------*\
@@ -67,7 +80,7 @@ body
 .main-title
 	text-align center
 	font-size 2em
-	color basecolor-dark
+	color basecolor-semi-dark
 
 .section-title
 	font-size 1.8em
@@ -88,7 +101,13 @@ body
 
 .icon-menu
 	color white
-	font-size 20px
+	font-size 1.3em
+
+.menu-option
+	color white
+	font-size 0.75em
+	text-transform uppercase
+	letter-spacing 0.1em
 
 
 /*------------------------------------*\
@@ -122,11 +141,18 @@ body
 	background-color basecolor-semi-bright
 	&__icon
 		text-align center
-		padding-top 0.25em
-		padding-bottom 0.25em
+		padding-top-bottom 0.7em
 		cursor pointer
+		&:hover
+			background-color alt-secondarycolor
 	&__options-list
-		display none
+		//display none
+	&__option-content
+		cursor pointer
+		text-align center
+		padding-top-bottom 1em
+		&:hover
+			background-color alt-basecolor
 
 @media screen and (min-width: 800px)
 	.menu
@@ -136,22 +162,14 @@ body
 			display block
 
 .header
-	padding-top 1em
-	padding-bottom 1em
-
-.slide-cotent
-	//overflow hidden
-	//background-color red
+	padding-top-bottom 1em
+	background-color white
 
 .slide
-	background-image url("../img/slide1.jpg")
 	background-size cover
 	background-position center center
-	//background-color red
 	overflow hidden
-	//position relative
 	&__content
-		background-color green
 		display table
 		max-width 45%
 		margin-top 2em
@@ -163,11 +181,19 @@ body
 	&__subtitle
 		margin-top 1em
 		margin-bottom 2em
+	&--img1
+		background-image url("../img/slide1.jpg")
+	&--img2
+		background-image url("../img/slide2.jpg")
 
 .personalize
 	background linear-gradient(top, rgba(basecolor,0.82) 0%, rgba(basecolor,1) 22%, rgba(basecolor,1) 100%)
-	padding-top 1.5em
-	padding-bottom 1.5em
+	padding-top-bottom 1.5em
+
+#piece-furniture-3D
+	height 400px
+	width 100%
+	background-color rgba(green, 0.8)
 
 
 /*------------------------------------*\
@@ -177,15 +203,12 @@ body
 	max-width-center page-max-witdh * 1px
 
 .u-inner-padding
-	padding-left ((100 - inner-page-width-mobile) / 2) * 1%
-	padding-right ((100 - inner-page-width-mobile) / 2) * 1%
+	padding-left-right ((100 - inner-page-width-mobile) / 2) * 1%
 
 @media screen and (min-width: 800px)
 	.u-inner-padding
-		padding-left ((100 - inner-page-width-tablet) / 2) * 1%
-		padding-right ((100 - inner-page-width-tablet) / 2) * 1%
+		padding-left-right ((100 - inner-page-width-tablet) / 2) * 1%
 
 @media screen and (min-width: 1024px)
 	.u-inner-padding
-		padding-left ((100 - inner-page-width-desktop) / 2) * 1%
-		padding-right ((100 - inner-page-width-desktop) / 2) * 1%
+		padding-left-right ((100 - inner-page-width-desktop) / 2) * 1%

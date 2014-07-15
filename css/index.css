@@ -222,16 +222,12 @@ h2 {
 figure {
   margin: 0;
 }
-figure img {
-  vertical-align: top;
-}
 ul {
   margin: 0;
   padding: 0;
-  font-size: 0;
 }
-ul li {
-  font-size: 16px;
+a {
+  text-decoration: none;
 }
 canvas {
   vertical-align: top;
@@ -241,12 +237,12 @@ img {
   height: 100%;
   vertical-align: top;
 }
+/*------------------------------------*     $FONTS
+\*------------------------------------*/
 @font-face {
   font-family: 'Gotham';
   src: url("../fonts/Gotham-Book.otf");
 }
-/*------------------------------------*     $ICON FONTS
-\*------------------------------------*/
 @font-face {
   font-family: 'icomoon';
   src: url("../fonts/icomoon.eot?-mw8z0o");
@@ -283,13 +279,14 @@ img {
 body {
   font-family: 'Gotham';
   font-size: 14px;
+  background-color: #f1f1f1;
 }
 /*------------------------------------*     $TEXTS
 \*------------------------------------*/
 .main-title {
   text-align: center;
   font-size: 2em;
-  color: #445861;
+  color: #486370;
 }
 .section-title {
   font-size: 1.8em;
@@ -310,7 +307,13 @@ body {
 }
 .icon-menu {
   color: #fff;
-  font-size: 20px;
+  font-size: 1.3em;
+}
+.menu-option {
+  color: #fff;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 /*------------------------------------*     $BUTTONS
 \*------------------------------------*/
@@ -346,16 +349,25 @@ body {
 /*------------------------------------*     $SECTIONS
 \*------------------------------------*/
 .menu {
-  background-color: #879ca4;
+  background-color: #8fa5ac;
 }
 .menu__icon {
   text-align: center;
-  padding-top: 0.25em;
-  padding-bottom: 0.25em;
+  padding-top: 0.7em;
+  padding-bottom: 0.7em;
   cursor: pointer;
 }
-.menu__options-list {
-  display: none;
+.menu__icon:hover {
+  background-color: #e7b44c;
+}
+.menu__option-content {
+  cursor: pointer;
+  text-align: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+.menu__option-content:hover {
+  background-color: #8bc5bf;
 }
 @media screen and (min-width: 800px) {
   .menu__icon {
@@ -368,9 +380,9 @@ body {
 .header {
   padding-top: 1em;
   padding-bottom: 1em;
+  background-color: #fff;
 }
 .slide {
-  background-image: url("../img/slide1.jpg");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -378,7 +390,6 @@ body {
   overflow: hidden;
 }
 .slide__content {
-  background-color: #008000;
   display: table;
   max-width: 45%;
   margin-top: 2em;
@@ -394,6 +405,12 @@ body {
   margin-top: 1em;
   margin-bottom: 2em;
 }
+.slide--img1 {
+  background-image: url("../img/slide1.jpg");
+}
+.slide--img2 {
+  background-image: url("../img/slide2.jpg");
+}
 .personalize {
   background: -webkit-linear-gradient(top, rgba(116,141,152,0.82) 0%, #748d98 22%, #748d98 100%);
   background: -moz-linear-gradient(top, rgba(116,141,152,0.82) 0%, #748d98 22%, #748d98 100%);
@@ -402,6 +419,11 @@ body {
   background: linear-gradient(to bottom, rgba(116,141,152,0.82) 0%, #748d98 22%, #748d98 100%);
   padding-top: 1.5em;
   padding-bottom: 1.5em;
+}
+#piece-furniture-3D {
+  height: 400px;
+  width: 100%;
+  background-color: rgba(0,128,0,0.8);
 }
 /*------------------------------------*     $UTILITY
 \*------------------------------------*/

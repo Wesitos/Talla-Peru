@@ -7,92 +7,91 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
-
-	<div id="slider">
-	    <img src="img/slider/01.jpg" alt="" />
-	    <img src="img/slider/02.jpg" alt="" />
-	    <img src="img/slider/03.jpg" alt="" />
-	</div>
-		<!--
-		<div class="furniture-editor">
-			<div class="furniture-editor__furniture-list"></div>
-			<div class="furniture-editor__furniture-name"></div>
-			<div class="furniture-editor__edit-button">
-				<button class="button button--base">editar</button>
-			</div>
-			<div class="furniture-editor__edit-area"></div>
+	<!--
+	<div class="furniture-editor">
+		<div class="furniture-editor__furniture-list"></div>
+		<div class="furniture-editor__furniture-name"></div>
+		<div class="furniture-editor__edit-button">
+			<button class="button button--base">editar</button>
 		</div>
-		-->
-		<nav class="menu u-page-max-width u-inner-padding">
-			<div class="menu__icon">
-				<span class="icon-menu"></span>
-			</div>
-			<div class="menu__options-list">
+		<div class="furniture-editor__edit-area">
+			<div id="piece-furniture-3D"></div>
+			<input id="input" type="range" name="ancho" min="28" max="75" step="1" value="47">
+		</div>
+	</div>-->
+	
+	<nav class="menu u-page-max-width u-inner-padding">
+		<div class="menu__icon">
+			<span class="icon-menu"></span>
+		</div>
+		<div class="menu__options-list">
+			<div class="menu__option-content">
 				<a class="menu-option" href="#">¿Quienes somos?</a>
+			</div>
+			<div class="menu__option-content">
 				<a class="menu-option" href="#">¿Cómo ordenar?</a>
+			</div>
+			<div class="menu__option-content">
 				<a class="menu-option" href="tel:+51980551278"><span class="icon-phone"></span>(51) 980551278</a>
+			</div>
+			<div class="menu__option-content">
 				<a class="menu-option" href="mailto:hansevangelista@gmail.com"><span class="icon-envelope"></span>escribenos</a>
 			</div>
-		</nav>
+		</div>
+	</nav>
 
-		<header class="header">		
-			<h1 class="main-title">Talla Perú</h1>
-		</header>
+	<header class="header u-page-max-width">		
+		<h1 class="main-title">Talla Perú</h1>
+	</header>
+	
+	<section>
+		<article class="slide slide--img1 u-page-max-width u-inner-padding">
+			<div class="slide__content slide__content--left">
+				<div class="slide__title">
+					<p class="slide-title">Muebles transformables.</p>
+				</div>
+				<div class="slide__subtitle">
+					<p class="slide-subtitle">Más tuyos y especiales.</p>
+				</div>
+				<div class="slide__button">
+					<button class="button button--base">personalizalos</button>
+				</div>
+			</div>
+		</article>
 		
-		<section>
-			<article class="slide u-page-max-width u-inner-padding">
-				<div class="slide__content slide__content--left">
-					<div class="slide__title">
-						<p class="slide-title">Muebles transformables y a tu medida.</p>
-					</div>
-					<div class="slide__subtitle">
-						<p class="slide-subtitle">Haz de tus mubles más tuyos y especiales, hazlos exáctamente como quieres.</p>
-					</div>
-					<div class="slide__button">
-						<button class="button button--base">personalizalos</button>
-					</div>					
+		<article class="slide slide--img2 u-page-max-width u-inner-padding">
+			<div class="slide__content slide__content--right">
+				<div class="slide__title">
+					<p class="slide-title">Crealos a medida.</p>
 				</div>
-			</article>
-			
-			<article class="slide u-page-max-width u-inner-padding">
-				<div class="slide__content slide__content--right">
-					<div class="slide__title">
-						<p class="slide-title">Muebles transformables y a tu medida.</p>
-					</div>
-					<div class="slide__subtitle">
-						<p class="slide-subtitle">Haz de tus mubles más tuyos y especiales, hazlos exáctamente como quieres.</p>
-					</div>
-					<div class="slide__button">
-						<button class="button button--secondary">personalizalos</button>
-					</div>					
+				<div class="slide__subtitle">
+					<p class="slide-subtitle">Hazlos exáctamente como quieres.</p>
 				</div>
-			</article>
-		</section>
+				<div class="slide__button">
+					<button class="button button--secondary">personalizalos</button>
+				</div>					
+			</div>
+		</article>
+	</section>
 
-		<section class="personalize u-page-max-width u-inner-padding">
-			<p class="section-title">Personaliza el tamaño de tus muebles</p>
-		</section>
+	<section class="personalize u-page-max-width u-inner-padding">
+		<p class="section-title">Personaliza el tamaño de tus muebles</p>
+	</section>
 
-		<section class="about">lorem</section>
-		<section class="instructions">lorem</section>
-		<section class="contact">lorem</section>
-		<section class="partners">lorem</section>
-		<section class="call-personalize">lorem</section>
-		<footer class="footer">lorem</footer>
+	<section class="about">lorem</section>
+	<section class="instructions">lorem</section>
+	<section class="contact">lorem</section>
+	<section class="partners">lorem</section>
+	<section class="call-personalize">lorem</section>
+	<footer class="footer">lorem</footer>
 
 
 	<script src="js/vendor/three.min.js"></script>
 	<script src="js/vendor/OBJLoader.js"></script>
 	<script src="js/vendor/jquery-1.11.0.min.js"></script>
 	<script src="js/vendor/jquery.event.move.js"></script>
-	<!--<script src="js/vendor/jquery.modal.min.js"></script>-->
-	<script src="js/vendor/flux.js"></script>
-
-	<!--<script src="js/nav.js"></script>-->
-	<script src="js/modal.js"></script>
 	<script src="js/draw_3D_Object.js"></script>
 	<script src="js/main.js"></script>
 	
-
 </body>
 </html>

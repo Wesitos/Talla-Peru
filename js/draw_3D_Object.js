@@ -1,4 +1,10 @@
 
+var tablero, pata_derecha, pata_izquierda, vara_inferior_derecha
+
+var vara, a, b, c
+
+var obj
+
 function draw_3D_Object (container, obj_name) {
 	
 	var renderer = make_renderer(container)
@@ -6,6 +12,8 @@ function draw_3D_Object (container, obj_name) {
 
 	load_3D_objec(obj_name, function (object) {
 		
+		//obj = object
+
 		var scene = make_scene(object)
 
 		render(scene, camera, renderer)
@@ -23,10 +31,20 @@ function draw_3D_Object (container, obj_name) {
 			var input = $('#input')
 			
 			input.change(function () {
-
 				var scale = input.val() / 47.0
+
+				grouped_object.scale.x = scale
+				var final_long = grouped_object.initial_long * scale
+
+				var lf = final_long - 2*5.811 - 2*1.778 + 2*0.961
+				var x = lf / 33.464
 				
-				new_scale(grouped_object, scale)
+				grouped_object.childs[2].scale.x = x
+
+				var y = final_long/2.0 - 5.811 - (31.542/2.0 + 1.778)
+
+				grouped_object.childs[0].position.x = y
+				grouped_object.childs[1].position.x = -y
 
 				render(scene, camera, renderer)
 			})
@@ -87,35 +105,39 @@ function grouping_pieces (obj_name, objects_list, callback) {
 	
 	$.getJSON( "./obj/" + obj_name + '.json', function( data ) {
 
-		var tablero, pata_derecha, pata_izquierda
 
 		$.each(data.groups, function (i, group) {
 
-			var father_name = group.father.name
+			var father_name = group.father
 			
 			var father = find_piece(objects_list, father_name)
 			
-			if(father.name == 'tablero-centro')
-				tablero = father
-			if(father.name == 'union-frente-derecha')
-				pata_derecha = father
-			if(father.name == 'union-atras-derecha')
-				pata_izquierda = father
+			if(father.name == 'tablero-centro') tablero = father
+			if(father.name == 'union-frente-derecha') pata_derecha = father
+			if(father.name == 'union-atras-derecha') pata_izquierda = father
+			if(father.name == 'vara-superior-izquierda') vara = father
 
-			$.each(group.childrens, function (i, child) {
+			
+			$.each(group.childrens, function (i, child_name) {
 
-				var children = find_piece(objects_list, child.name)
+				var children = find_piece(objects_list, child_name)
+
 				children.parent = father
 			})
 		})
-
+		
+		
 		tablero.childs = []
-		pata_derecha.initial_position = 18.53587
-		tablero.childs[0] = pata_derecha
-		pata_izquierda.initial_position = -18.53587
-		tablero.childs[1] = pata_izquierda
+		
+		tablero.initial_long = 46.72
+		tablero.childs = []
 
+		tablero.childs[0] = pata_derecha
+		tablero.childs[1] = pata_izquierda
+		tablero.childs[2] = vara
+		
 		callback(tablero)
+		
 	})
 }
 
@@ -131,7 +153,7 @@ function find_piece (obj_list, obj_name) {
 
 	return piece
 }
-
+/*
 function new_scale (object, new_scale) {
 
 	object.scale.x = new_scale
@@ -148,3 +170,4 @@ function new_position (object, new_scale) {
 
 	object.position.x = final_position - initial_position
 }
+*/
