@@ -129,7 +129,6 @@ select {
 }
 button,
 html input[type="button"],
-* 1 */,
 input[type="reset"],
 input[type="submit"] {
   -webkit-appearance: button;
@@ -243,35 +242,6 @@ img {
   font-family: 'Gotham';
   src: url("../fonts/Gotham-Book.otf");
 }
-@font-face {
-  font-family: 'icomoon';
-  src: url("../fonts/icomoon.eot?-mw8z0o");
-  src: url("../fonts/icomoon.eot?#iefix-mw8z0o") format('embedded-opentype'), url("../fonts/icomoon.woff?-mw8z0o") format('woff'), url("../fonts/icomoon.ttf?-mw8z0o") format('truetype'), url("../fonts/icomoon.svg?-mw8z0o#icomoon") format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-[class^="icon-"],
-[class*=" icon-"] {
-  font-family: 'icomoon';
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-/* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.icon-phone:before {
-  content: "\e600";
-}
-.icon-envelope:before {
-  content: "\e601";
-}
-.icon-menu:before {
-  content: "\e602";
-}
 /*------------------------------------*     $MIXINS
 \*------------------------------------*/
 /*------------------------------------*     $BASE
@@ -337,14 +307,8 @@ body {
 .button--base {
   background-color: #748d98;
 }
-.button--base:hover {
-  background-color: #8aa8b5;
-}
 .button--secondary {
   background-color: #d8b359;
-}
-.button--secondary:hover {
-  background-color: #e8c050;
 }
 /*------------------------------------*     $SECTIONS
 \*------------------------------------*/
@@ -357,17 +321,11 @@ body {
   padding-bottom: 0.7em;
   cursor: pointer;
 }
-.menu__icon:hover {
-  background-color: #e7b44c;
-}
 .menu__option-content {
   cursor: pointer;
   text-align: center;
   padding-top: 1em;
   padding-bottom: 1em;
-}
-.menu__option-content:hover {
-  background-color: #8bc5bf;
 }
 @media screen and (min-width: 800px) {
   .menu__icon {
@@ -420,11 +378,36 @@ body {
   padding-top: 1.5em;
   padding-bottom: 1.5em;
 }
-#piece-furniture-3D {
-  height: 400px;
-  width: 100%;
-  background-color: rgba(0,128,0,0.8);
+.editor {
+  background-color: #8bc5bf;
 }
+.editor__item-list {
+  display: table;
+  padding: 1em;
+}
+.editor-item {
+  display: table-cell;
+  width: 25%;
+}
+.contenedor {
+  display: table;
+  width: 100%;
+  background-color: #f00;
+}
+.editor__item-name {
+  background-color: #ff0;
+  display: table-cell;
+  width: 100%;
+}
+.editor__edit-button {
+  background-color: #008000;
+  display: table-cell;
+}
+/*
+#piece-3D
+	height 400px
+	width 100%
+	background-color rgba(green, 0.8)*/
 /*------------------------------------*     $UTILITY
 \*------------------------------------*/
 .u-page-max-width {

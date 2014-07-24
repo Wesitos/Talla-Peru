@@ -13,4 +13,6 @@ app.get('/', function(req, res){
 	res.render('index')
 })
 
-var server = app.listen(3000)
+var server = app.listen(3000, function () {
+	console.log('server listen in port 3000')
+})
