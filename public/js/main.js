@@ -18,7 +18,8 @@ $(document).ready(function () {
 	/*
 	modal()
 	*/
-	var container = document.getElementById('piece-furniture-3D')
+	//var container = document.getElementById('piece-furniture-3D')
+	var container = document.getElementById('piece-3D')
 	
 	draw_3D_Object(container, 'mesa')
 	

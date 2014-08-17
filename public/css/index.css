@@ -403,11 +403,11 @@ body {
   background-color: #008000;
   display: table-cell;
 }
-/*
-#piece-3D
-	height 400px
-	width 100%
-	background-color rgba(green, 0.8)*/
+#piece-3D {
+  height: 400px;
+  width: 100%;
+  background-color: rgba(0,128,0,0.8);
+}
 /*------------------------------------*     $UTILITY
 \*------------------------------------*/
 .u-page-max-width {
