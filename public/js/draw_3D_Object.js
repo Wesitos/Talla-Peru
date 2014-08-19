@@ -26,7 +26,7 @@ function draw_3D_Object (container, obj_name) {
 
 	grouping_pieces(obj_name, object.children, function (grouped_object) {
 	    
-	    var input = $('#input');
+	    var input = $('#inputX');
 	    
 	    input.change(function () {
 		var scale = input.val() / 47.0;
