@@ -18,19 +18,35 @@
 	    ]
 	},
 	{
-	    "father": "union-frente-derecha",
+	    "father": "union-frente-derecha-derecha",
 	    "childrens": [
-		"pata-derecha-frente",
-		"pata-izquierda-frente",
-		"union-frente-izquierda"
+                "union-frente-derecha-mid",
+                "union-frente-derecha-izquierda",
+		"pata-derecha-frente-top",                
+                "pata-derecha-frente-mid",
+                "pata-derecha-frente-bottom",
+                "pata-izquierda-frente-top",
+		"pata-izquierda-frente-mid",
+		"pata-izquierda-frente-bottom",
+                "union-frente-izquierda-izquierda",
+		"union-frente-izquierda-mid",
+		"union-frente-izquierda-derecha"
 	    ]
 	},
 	{
-	    "father": "union-atras-derecha",
+	    "father": "union-atras-derecha-derecha",
 	    "childrens": [
-		"pata-derecha-atras",
-		"pata-izquierda-atras",
-		"union-atras-izquierda"
+                "union-atras-derecha-mid",
+                "union-atras-derecha-izquierda",
+                "pata-derecha-atras-top",
+		"pata-derecha-atras-mid",
+		"pata-derecha-atras-bottom",
+                "pata-izquierda-atras-top",
+		"pata-izquierda-atras-mid",
+		"pata-izquierda-atras-bottom",
+                "union-atras-izquierda-izquierda",
+		"union-atras-izquierda-mid",
+		"union-atras-izquierda-derecha"
 	    ]
 	}
     ],
