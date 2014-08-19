@@ -1,57 +1,57 @@
 {
-	"groups": [
-		{
-			"father": "tablero-centro",
-			"childrens": [
-				"tablero-derecha",
-				"tablero-izquierda",
-				"vara-medio-derecha",
-				"vara-medio-izquierda"
-			]
-		},
-		{
-			"father": "vara-superior-izquierda",
-			"childrens": [
-				"vara-superior-derecha",
-				"vara-inferior-izquierda",
-				"vara-inferior-derecha"
-			]
-		},
-		{
-			"father": "union-frente-derecha",
-			"childrens": [
-				"pata-derecha-frente",
-				"pata-izquierda-frente",
-				"union-frente-izquierda"
-			]
-		},
-		{
-			"father": "union-atras-derecha",
-			"childrens": [
-				"pata-derecha-atras",
-				"pata-izquierda-atras",
-				"union-atras-izquierda"
-			]
-		}
-	],
-	"relations": [
-		{
-			"father": "tablero-centro",
-			"child": "union-frente-derecha",
-			"scale": false,
-			"position": true
-		},
-		{
-			"father": "tablero-centro",
-			"child": "union-atras-derecha",
-			"scale": false,
-			"position": true
-		},
-		{
-			"father": "tablero-centro",
-			"child": "vara-inferior-derecha",
-			"scale": true,
-			"position": false
-		}
-	]
+    "groups": [
+	{
+	    "father": "tablero-centro",
+	    "childrens": [
+		"tablero-derecha",
+		"tablero-izquierda",
+		"vara-medio-derecha",
+		"vara-medio-izquierda"
+	    ]
+	},
+	{
+	    "father": "vara-superior-izquierda",
+	    "childrens": [
+		"vara-superior-derecha",
+		"vara-inferior-izquierda",
+		"vara-inferior-derecha"
+	    ]
+	},
+	{
+	    "father": "union-frente-derecha",
+	    "childrens": [
+		"pata-derecha-frente",
+		"pata-izquierda-frente",
+		"union-frente-izquierda"
+	    ]
+	},
+	{
+	    "father": "union-atras-derecha",
+	    "childrens": [
+		"pata-derecha-atras",
+		"pata-izquierda-atras",
+		"union-atras-izquierda"
+	    ]
+	}
+    ],
+    "relations": [
+	{
+	    "father": "tablero-centro",
+	    "child": "union-frente-derecha",
+	    "scale": false,
+	    "position": true
+	},
+	{
+	    "father": "tablero-centro",
+	    "child": "union-atras-derecha",
+	    "scale": false,
+	    "position": true
+	},
+	{
+	    "father": "tablero-centro",
+	    "child": "vara-inferior-derecha",
+	    "scale": true,
+	    "position": false
+	}
+    ]
 }
