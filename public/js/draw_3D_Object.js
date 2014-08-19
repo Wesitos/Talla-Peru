@@ -22,7 +22,7 @@ function draw_3D_Object (container, obj_name) {
 	    object.rotation.x += e.deltaY * 0.005;
 
 	    render(scene, camera, renderer);
-	})
+	});
 
 	grouping_pieces(obj_name, object.children, function (grouped_object) {
 	    
@@ -121,7 +121,7 @@ function grouping_pieces (obj_name, objects_list, callback) {
 		var children = find_piece(objects_list, child_name);
 
 		children.parent = father;
-	    })
+	    });
 		})
 	    
 	    
@@ -145,7 +145,7 @@ function find_piece (obj_list, obj_name) {
 
     $.grep(obj_list, function (item){
 	
-	if(item.name == obj_name);
+	if(item.name == obj_name)
 	    piece = item;
     })
 
