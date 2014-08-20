@@ -53,19 +53,19 @@
     "relations": [
 	{
 	    "father": "tablero-centro",
-	    "child": "union-frente-derecha",
+	    "child": "union-frente-derecha-derecha",
 	    "scale": false,
 	    "position": true
 	},
 	{
 	    "father": "tablero-centro",
-	    "child": "union-atras-derecha",
+	    "child": "union-atras-derecha-derecha",
 	    "scale": false,
 	    "position": true
 	},
 	{
 	    "father": "tablero-centro",
-	    "child": "vara-inferior-derecha",
+	    "child": "vara-inferior-derecha-derecha",
 	    "scale": true,
 	    "position": false
 	}
