@@ -109,12 +109,17 @@ function grouping_pieces (obj_name, objects_list, callback) {
 	    var father_name = group.father;
 	    
 	    var father = find_piece(objects_list, father_name);
-	    
-	    if(father.name == 'tablero-centro') tablero = father;
-	    if(father.name == 'union-frente-derecha') pata_derecha = father;
-	    if(father.name == 'union-atras-derecha') pata_izquierda = father;
-	    if(father.name == 'vara-superior-izquierda') vara = father;
-
+	    switch (father.name)
+            {
+            case 'tablero-centro':
+                tablero = father; break;
+            case 'union-frente-derecha-derecha':
+                pata_derecha = father; break;
+            case 'union-atras-derecha-derecha':
+                pata_izquierda = father; break;
+            case 'vara-superior-izquierda':
+                vara = father; break;
+            }
 	    
 	    $.each(group.childrens, function (i, child_name) {
 
@@ -140,7 +145,8 @@ function grouping_pieces (obj_name, objects_list, callback) {
 }
 
 function find_piece (obj_list, obj_name) {
-    
+    // Busca obj_name en obj_list y lo devuelve.
+    // Si no lo encuentra, devuelve undefined
     var piece;
 
     $.grep(obj_list, function (item){
