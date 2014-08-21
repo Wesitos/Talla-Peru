@@ -106,11 +106,11 @@ function initial_setup (container){
     // Cargamos la textura
     var texture = new THREE.Texture();
 
-    var loader = new THREE.ImageLoader(manager);
-    loader.load( './img/crate.jpg', function ( image ) {
-        texture.image = image;
-        texture.needsUpdate = true;
-    } );
+    // var loader = new THREE.ImageLoader(manager);
+    // loader.load( './img/crate.jpg', function ( image ) {
+    //     texture.image = image;
+    //     texture.needsUpdate = true;
+    // } );
 
     // Cargamos el modelo
     var loader = new THREE.OBJLoader(manager);
