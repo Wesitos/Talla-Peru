@@ -21,6 +21,7 @@ function draw_3D_Object (container) {
     var mesa;
     var renderer,camera,scene;
 
+    // Creamos la escena y todos sus elementos
     elements = initial_setup(container);
 
     renderer = elements.renderer;
@@ -61,6 +62,11 @@ function initial_setup (container){
     var scene = new THREE.Scene();
 
     scene.add(camera);
+
+    // Agregamos iluminacion
+    var directionalLight = new THREE.DirectionalLight(0xffeedd);
+    directionalLight.position.set(0, 0, 1);
+    scene.add(directionalLight);
 
     /*Agregamos sth */
     var manager = new THREE.LoadingManager();
