@@ -30,6 +30,33 @@ function draw_3D_Object (container) {
     mesa = elements.mesa;
 }
 
+function scale(container, object){
+
+    $("#controlx").bind("change",function(){
+        var value = $(this).val();
+        console.log(object.scale.x);
+        object.scale.x = value;
+        mesa = elements.mesa;
+        render()
+    })
+
+    $("#controly").bind("change",function(){
+        var value = $(this).val();
+        console.log(object.scale.y);
+        object.scale.y = value;
+        mesa = elements.mesa;
+        render()
+    })
+
+    $("#controlz").bind("change",function(){
+        var value = $(this).val();
+        console.log(object.scale.z);
+        object.scale.z = value;
+        mesa = elements.mesa;
+        render()
+    })
+}
+
 function girar(container, object){
     renderer = elements.renderer;
     camera = elements.camera;
@@ -50,7 +77,7 @@ function initial_setup (container){
 
     // Creamos el objeto a "renderear" y lo agregamos al DOM
     var renderer = new THREE.WebGLRenderer( { alpha: true } );
-    renderer.setSize(1000,1000)
+    renderer.setSize(800,800)
     container.appendChild(renderer.domElement);
 
     //Creamos la camara que va mostrar la escena
@@ -72,8 +99,6 @@ function initial_setup (container){
     var manager = new THREE.LoadingManager();
     var loader = new THREE.OBJLoader(manager);
 
-    global = loader;
-
     manager.onProgress = function (item,loaded,total)
     { console.log( item, loaded, total ); }
 
@@ -81,8 +106,9 @@ function initial_setup (container){
         //loaded = object;
         scene.add(object);
         console.log("cargue!");
-        render(scene, camera, renderer);
+        render();
         girar(container, object);
+        scale(container,object);
     })
 
     return {
@@ -93,7 +119,11 @@ function initial_setup (container){
     }
 }
 
-function render (scene, camera, renderer) {
+function render () {
     //Render con los nuevos parametros de renderer
+    renderer = elements.renderer;
+    camera = elements.camera;
+    scene = elements.scene;
+
     renderer.render(scene, camera);
 }
