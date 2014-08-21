@@ -21,35 +21,24 @@ function draw_3D_Object (container) {
     var mesa;
     var renderer,camera,scene;
 
-
     elements = initial_setup(container);
 
     renderer = elements.renderer;
     camera = elements.camera;
     scene = elements.scene;
     mesa = elements.mesa;
-    console.log("hoka")
-
-    console.log("bye")
-
-
 }
 
-function girar(container){
-    console.log("girar");
+function girar(container, object){
     renderer = elements.renderer;
     camera = elements.camera;
     scene = elements.scene;
-
-
 
     $(container).bind('move', function (e) {
         object.rotation.y += e.deltaX * 0.005;
         object.rotation.x += e.deltaY * 0.005;
         render(scene, camera, renderer);
-    })
-
-}
+    })}
 
 function initial_setup (container){
     //Configuramos la camara y el renderer inicial
@@ -73,31 +62,21 @@ function initial_setup (container){
 
     scene.add(camera);
 
-
     /*Agregamos sth */
     var manager = new THREE.LoadingManager();
     var loader = new THREE.OBJLoader(manager);
 
     global = loader;
 
-    manager.onProgress = function (item,loaded,total){
-
-        console.log( item, loaded, total );
-
-    }
-
+    manager.onProgress = function (item,loaded,total)
+    { console.log( item, loaded, total ); }
 
     loader.load('./obj/mesa-split.obj', function (object) {
         //loaded = object;
         scene.add(object);
         console.log("cargue!");
         render(scene, camera, renderer);
-
-    $(container).bind('move', function (e) {
-        object.rotation.y += e.deltaX * 0.005;
-        object.rotation.x += e.deltaY * 0.005;
-        render(scene, camera, renderer);
-    });
+        girar(container, object);
     })
 
     return {
