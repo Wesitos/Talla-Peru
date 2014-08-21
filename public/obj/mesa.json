@@ -1,16 +1,16 @@
 {
     "groups": [
-	{
-	    "father": "tablero-centro",
-	    "childrens": [
-		"tablero-derecha",
-		"tablero-izquierda",
-		"vara-medio-derecha",
-		"vara-medio-izquierda"
-	    ]
-	},
-	{
-	    "father": "vara-superior-izquierda",
+        {
+            "father": "tablero-centro",
+            "childrens": [
+                "tablero-derecha",
+                "tablero-izquierda",
+                "vara-medio-derecha",
+                "vara-medio-izquierda"
+            ]
+        },
+        {
+            "father": "vara-superior-izquierda",
 	    "childrens": [
 		"vara-superior-derecha",
 		"vara-inferior-izquierda",
