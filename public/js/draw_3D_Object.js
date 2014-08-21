@@ -92,14 +92,13 @@ function initial_setup (container){
         scene.add(object);
         console.log("cargue!");
         render(scene, camera, renderer);
-    })
-
 
     $(container).bind('move', function (e) {
         object.rotation.y += e.deltaX * 0.005;
         object.rotation.x += e.deltaY * 0.005;
         render(scene, camera, renderer);
     });
+    })
 
     return {
         scene : scene,
