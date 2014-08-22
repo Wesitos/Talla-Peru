@@ -90,9 +90,9 @@ function initial_setup (container){
     var scene = new THREE.Scene();
     scene.add(camera);
 
-    // Agregamos iluminacion
-    var directionalLight = new THREE.DirectionalLight(0xffeedd);
-    directionalLight.position.set(0, 0, 1);
+    // Agregamos iluminacion directa
+    var directionalLight = new THREE.DirectionalLight(0xffeedd, 1.5);
+    directionalLight.position.set(0, 1, 1);
     scene.add(directionalLight);
 
     /*Agregamos sth */
