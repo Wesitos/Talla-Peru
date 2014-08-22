@@ -105,7 +105,7 @@ function initial_setup (container){
     // Cargamos la textura
     var texture = new THREE.Texture();
     var loader = new THREE.ImageLoader(manager);
-    loader.load( './img/crate.jpg', function ( image ) {
+    loader.load( './img/wood.jpg', function ( image ) {
         texture.image = image;
         texture.needsUpdate = true;
     } );
