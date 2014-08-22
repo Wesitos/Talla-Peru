@@ -58,6 +58,7 @@ function scale(container, object){
 }
 
 function girar(container, object){
+    // Event handler para girar la mesa
     renderer = elements.renderer;
     camera = elements.camera;
     scene = elements.scene;
@@ -87,7 +88,6 @@ function initial_setup (container){
     camera.position.y = 20;
     //Creamos la escena que va mostar el objeto
     var scene = new THREE.Scene();
-
     scene.add(camera);
 
     // Agregamos iluminacion
@@ -97,19 +97,36 @@ function initial_setup (container){
 
     /*Agregamos sth */
     var manager = new THREE.LoadingManager();
+
+    global = loader;
+    manager.onProgress = function (item,loaded,total){
+        console.log( item, loaded, total );
+    }
+
+    // Cargamos la textura
+    var texture = new THREE.Texture();
+
+    // var loader = new THREE.ImageLoader(manager);
+    // loader.load( './img/crate.jpg', function ( image ) {
+    //     texture.image = image;
+    //     texture.needsUpdate = true;
+    // } );
+
+    // Cargamos el modelo
     var loader = new THREE.OBJLoader(manager);
-
-    manager.onProgress = function (item,loaded,total)
-    { console.log( item, loaded, total ); }
-
     loader.load('./obj/mesa-split.obj', function (object) {
-        //loaded = object;
+        // object.traverse( function ( child ) {
+	//     if ( child instanceof THREE.Mesh ) {
+	// 	child.material.map = texture;
+	//     }});
+
         scene.add(object);
         console.log("cargue!");
         render();
         girar(container, object);
         scale(container,object);
     })
+
 
     return {
         scene : scene,
