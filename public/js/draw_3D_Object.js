@@ -116,10 +116,13 @@ function initial_setup (container){
         obj.traverse( function ( child ) {
 	    if ( child instanceof THREE.Mesh ) {
 		child.material.map = texture;
-	    }});
-        elements.mesa = obj;
-        scene.add(obj);
-        console.log("cargue!");
+	    }
+        });
+        groups = agrupa_objetos(obj, './obj/mesa.json');
+        console.log(groups)
+        for (var i=0; i < groups.length; i++){
+            scene.add(groups[i]);
+        }
         render();
         girar(container, obj);
         scale(container,obj);
@@ -142,3 +145,30 @@ function render () {
     renderer.render(scene, camera);
 }
 
+function agrupa_objetos(obj, json_url){
+    var lista_groups = [];
+    var json_obj = JSON.parse($.ajax({
+        type: 'GET',
+        url: json_url,
+        dataType: 'json',
+        async: false
+    }).responseText);
+
+    var groups = json_obj.groups
+    for (var i=0; i < groups.length; i++){
+        group = groups[i];
+        grp = new THREE.Object3D();
+        grp.name = group.parent;
+        for (var j=0; j < group.length; i++){
+            obj.traverse(function(child){
+                if (child instanceof THREE.Mesh){
+                    if (group.children.indexOf(child.name)!= -1){
+                        grp.add(child);
+                    }
+                }
+            });
+        }
+        lista_groups.concat(grp)
+    }
+    return lista_groups
+}
