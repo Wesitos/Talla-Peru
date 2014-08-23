@@ -1,73 +1,32 @@
 {
     "groups": [
-        {
-            "father": "tablero-centro",
-            "childrens": [
-                "tablero-derecha",
-                "tablero-izquierda",
-                "vara-medio-derecha",
-                "vara-medio-izquierda"
-            ]
-        },
-        {
-            "father": "vara-superior-izquierda",
-	    "childrens": [
-		"vara-superior-derecha",
-		"vara-inferior-izquierda",
-		"vara-inferior-derecha"
-	    ]
-	},
-	{
-	    "father": "union-frente-derecha-derecha",
-	    "childrens": [
-                "union-frente-derecha-mid",
-                "union-frente-derecha-izquierda",
-		"pata-derecha-frente-top",                
-                "pata-derecha-frente-mid",
-                "pata-derecha-frente-bottom",
-                "pata-izquierda-frente-top",
-		"pata-izquierda-frente-mid",
-		"pata-izquierda-frente-bottom",
-                "union-frente-izquierda-izquierda",
-		"union-frente-izquierda-mid",
-		"union-frente-izquierda-derecha"
-	    ]
-	},
-	{
-	    "father": "union-atras-derecha-derecha",
-	    "childrens": [
-                "union-atras-derecha-mid",
-                "union-atras-derecha-izquierda",
-                "pata-derecha-atras-top",
-		"pata-derecha-atras-mid",
-		"pata-derecha-atras-bottom",
-                "pata-izquierda-atras-top",
-		"pata-izquierda-atras-mid",
-		"pata-izquierda-atras-bottom",
-                "union-atras-izquierda-izquierda",
-		"union-atras-izquierda-mid",
-		"union-atras-izquierda-derecha"
-	    ]
-	}
-    ],
-    "relations": [
-	{
-	    "father": "tablero-centro",
-	    "child": "union-frente-derecha-derecha",
-	    "scale": false,
-	    "position": true
-	},
-	{
-	    "father": "tablero-centro",
-	    "child": "union-atras-derecha-derecha",
-	    "scale": false,
-	    "position": true
-	},
-	{
-	    "father": "tablero-centro",
-	    "child": "vara-inferior-derecha-derecha",
-	    "scale": true,
-	    "position": false
-	}
+        { "parent": "tablero",
+          "children": [
+              "tablero-izquierda",
+              "tablero-mid",
+              "tablero-derecha"
+          ]},
+        { "parent": "pata-derecha",
+          "children": [
+              "pata-derecha-frente-top",
+              "pata-derecha-frente-mid",
+              "pata-derecha-frente-bottom",
+              "pata-derecha-atras-top",
+              "pata-derecha-atras-mid",
+              "pata-derecha-atras-bottom",
+              "vara-inferior-derecha",
+              "vara-superior-derecha"
+          ]},
+        { "parent": "pata-izquierda",
+          "children": [
+              "pata-izquierda-frente-top",
+              "pata-izquierda-frente-mid",
+              "pata-izquierda-frente-bottom",
+              "pata-izquierda-atras-top",
+              "pata-izquierda-atras-mid",
+              "pata-izquierda-atras-bottom",
+              "vara-inferior-izquierda",
+              "vara-superior-izquierda"
+          ]}
     ]
 }
