@@ -1,20 +1,7 @@
-//var tablero, pata_derecha, pata_izquierda, vara_inferior_derecha;
-//var vara, a, b, c;
-//var obj;
-
-//var width = 400,
-//    height = 350;
-
-/*$(container).bind('move', function (e) {
-
-  object.rotation.y += e.deltaX * 0.005;
-  object.rotation.x += e.deltaY * 0.005;
-
-  render(scene, camera, renderer);
-  });*/
-
 var elements;
 var global;
+
+var patader = new THREE.Object3D();
 
 function draw_3D_Object (container) {
 
@@ -31,27 +18,41 @@ function draw_3D_Object (container) {
 }
 
 function scale(container, object){
+    
+    var nomx = 2,
+        nomy = 1,
+        nomz = 0.75;
+    var maxx = 2.5,
+        maxy = 2.2,
+        maxz = 0.8;
+    var minx = 1.7,
+        miny = 0.8,
+        minz = 0.6;
 
     $("#controlx").bind("change",function(){
-        var value = $(this).val();
-        console.log(object.scale.x);
-        object.scale.x = value;
+        var value = $(this).val()/2;
+        console.log(value)
+        if(value > maxx){
+            //$(this).val(maxx)               
+            console.log("error")
+            //$("#controlx").val(maxx)
+        }
+
+        object.scale.z = value;
         mesa = elements.mesa;
         render()
     })
 
     $("#controly").bind("change",function(){
         var value = $(this).val();
-        console.log(object.scale.y);
-        object.scale.y = value;
+        object.scale.x = value;
         mesa = elements.mesa;
         render()
     })
 
     $("#controlz").bind("change",function(){
-        var value = $(this).val();
-        console.log(object.scale.z);
-        object.scale.z = value;
+        var value = $(this).val()/0.75;        
+        object.scale.y = value;
         mesa = elements.mesa;
         render()
     })
@@ -74,18 +75,16 @@ function initial_setup (container){
     var loaded;
 
     var width = window.innerWidth/2;
-    var height = window.innerWidth/2;
+    var height = window.innerHeight/1;
 
     // Creamos el objeto a "renderear" y lo agregamos al DOM
     var renderer = new THREE.WebGLRenderer({alpha: true});
-    renderer.setSize(800,800)
+    renderer.setSize(width,height)
     container.appendChild(renderer.domElement);
 
     //Creamos la camara que va mostrar la escena
-    var camera = new THREE.PerspectiveCamera(45, width/height, 0.1, 1000);
-    camera.position.z = 200;
-    camera.position.x = 30;
-    camera.position.y = 20;
+    var camera = new THREE.PerspectiveCamera(35, width/height, 0.1, 1000);
+    camera.position.z = 200;        
     //Creamos la escena que va mostar el objeto
     var scene = new THREE.Scene();
     scene.add(camera);
@@ -114,18 +113,16 @@ function initial_setup (container){
     var loader = new THREE.OBJLoader(manager);
     loader.load('./obj/mesa.obj', function (obj) {
         obj.traverse( function ( child ) {
-	    if ( child instanceof THREE.Mesh ) {
-		child.material.map = texture;
-	    }
-        });
-        groups = agrupa_objetos(obj, './obj/mesa.json');
-        console.log(groups)
-        for (var i=0; i < groups.length; i++){
-            scene.add(groups[i]);
-        }
+            if ( child instanceof THREE.Mesh ) {
+                child.material.map = texture;
+            }});
+        elements.mesa = obj;
+        scene.add(obj);
+        console.log("cargue!");        
         render();
         girar(container, obj);
         scale(container,obj);
+        agrupar();
     })
 
 
@@ -171,4 +168,34 @@ function agrupa_objetos(obj, json_url){
         lista_groups.concat(grp)
     }
     return lista_groups
+}
+
+
+function agrupar(){
+    var mesas = elements.mesa;
+    var partes = mesas.children; 
+    lista = ["pata-derecha-frente-top",
+              "pata-derecha-frente-mid",
+              "pata-derecha-frente-bottom",
+              "pata-derecha-atras-top",
+              "pata-derecha-atras-mid",
+              "pata-derecha-atras-bottom",
+              "vara-inferior-derecha",
+              "vara-superior-derecha"]    
+    
+    console.log(partes.length);
+    for (i=0;i<partes.length;i++){
+        nom = partes[i]['name'];
+        if (lista.indexOf(nom) != -1 ){
+            patader.add(partes[i])
+        }
+    }
+/*    $.each(partes,function(i,x){
+        nom = x.name
+        
+        if (lista.indexOf(nom) != -1 ){
+            console.log(nom)
+            patader.add(x)            
+        } 
+    })*/
 }
