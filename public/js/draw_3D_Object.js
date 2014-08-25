@@ -19,8 +19,8 @@ function draw_3D_Object (container) {
 
 function scale(container, object){
     
-    var nomx = 2,
-        nomy = 1,
+    var nomx = 1,
+        nomy = 2,
         nomz = 0.75;
     var maxx = 2.5,
         maxy = 2.2,
@@ -30,9 +30,17 @@ function scale(container, object){
         minz = 0.6;
 
     $("#controlx").bind("change",function(){
-        var value = $(this).val()/2;
-        console.log(value)
-        if(value > maxx){
+        var value = $(this).val()/nomx;
+        object.scale.x = value;
+        console.log("x "+ value)
+        mesa = elements.mesa;
+        render()
+    })
+
+    $("#controly").bind("change",function(){
+        var value = $(this).val()/nomy;
+        console.log("y "+ value)
+        if(value < maxx){
             //$(this).val(maxx)               
             console.log("error")
             //$("#controlx").val(maxx)
@@ -43,16 +51,10 @@ function scale(container, object){
         render()
     })
 
-    $("#controly").bind("change",function(){
-        var value = $(this).val();
-        object.scale.x = value;
-        mesa = elements.mesa;
-        render()
-    })
-
     $("#controlz").bind("change",function(){
-        var value = $(this).val()/0.75;        
+        var value = $(this).val()/nomx;
         object.scale.y = value;
+        console.log("z "+ value)
         mesa = elements.mesa;
         render()
     })
@@ -74,8 +76,8 @@ function initial_setup (container){
     //Configuramos la camara y el renderer inicial
     var loaded;
 
-    var width = window.innerWidth/2;
-    var height = window.innerHeight/1;
+    var width = 500;
+    var height = 400;
 
     // Creamos el objeto a "renderear" y lo agregamos al DOM
     var renderer = new THREE.WebGLRenderer({alpha: true});
@@ -83,7 +85,7 @@ function initial_setup (container){
     container.appendChild(renderer.domElement);
 
     //Creamos la camara que va mostrar la escena
-    var camera = new THREE.PerspectiveCamera(35, width/height, 0.1, 1000);
+    var camera = new THREE.PerspectiveCamera(30, width/height, 0.2, 1000);
     camera.position.z = 200;        
     //Creamos la escena que va mostar el objeto
     var scene = new THREE.Scene();
@@ -122,7 +124,7 @@ function initial_setup (container){
         render();
         girar(container, obj);
         scale(container,obj);
-        agrupar();
+//        agrupar();
     })
 
 
@@ -138,7 +140,6 @@ function render () {
     renderer = elements.renderer;
     camera = elements.camera;
     scene = elements.scene;
-
     renderer.render(scene, camera);
 }
 
