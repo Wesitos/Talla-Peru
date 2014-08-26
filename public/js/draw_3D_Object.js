@@ -22,39 +22,63 @@ function scale(container, object){
     var nomx = 1,
         nomy = 2,
         nomz = 0.75;
-    var maxx = 2.5,
-        maxy = 2.2,
-        maxz = 0.8;
-    var minx = 1.7,
-        miny = 0.8,
+    var maxx = 1.2,
+        maxy = 2.5,
+        maxz = 0.85;
+    var minx = 0.8,
+        miny = 1.6,
         minz = 0.6;
 
     $("#controlx").bind("change",function(){
         var value = $(this).val()/nomx;
+
+        if(value > maxx/nomx){
+            value = maxx/nomx
+            $(this).val(maxx)
+        }
+        if(value < minx/nomx){
+            value = minx/nomx
+            $(this).val(minx)
+        }
+
         object.scale.x = value;
-        console.log("x "+ value)
         mesa = elements.mesa;
         render()
     })
 
     $("#controly").bind("change",function(){
         var value = $(this).val()/nomy;
-        console.log("y "+ value)
-        if(value < maxx){
-            //$(this).val(maxx)               
-            console.log("error")
-            //$("#controlx").val(maxx)
+
+        if(value > maxy/nomy){
+            value = maxy/nomy;
+            $(this).val(maxy)
+        }
+        else
+        if(value < miny/nomy){
+            value = miny/nomy;
+            $(this).val(miny)
         }
 
         object.scale.z = value;
+
         mesa = elements.mesa;
         render()
     })
 
     $("#controlz").bind("change",function(){
-        var value = $(this).val()/nomx;
+        var value = $(this).val()/nomz;
+
+        if(value > maxz/nomz){
+            value = maxz/nomz
+            $(this).val(maxz)
+        }
+        if(value < minz/nomz){
+            value = minz/nomz
+            $(this).val(minz)
+        }
+
         object.scale.y = value;
-        console.log("z "+ value)
+
         mesa = elements.mesa;
         render()
     })
