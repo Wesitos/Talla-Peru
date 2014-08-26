@@ -109,6 +109,7 @@ function initial_setup (container){
     loader.load( './img/wood.jpg', function ( image ) {
         texture.image = image;
         texture.needsUpdate = true;
+        render();
     } );
 
     // Cargamos el modelo
@@ -199,4 +200,37 @@ function agrupar(){
             patader.add(x)            
         } 
     })*/
+}
+
+var parent;
+function rotateaxe(){
+    mesa = elements.mesa;
+    parte = mesa.children[30];
+    parte.rotateOnAxis(new THREE.Vector3(1,1,1).normalize(),Math.PI/4); render()
+
+    var rotationMatrix = new THREE.Matrix4();
+    rotationMatrix.makeRotationAxis( new THREE.Vector3(1,1,1).normalize(), Math.PI/4);
+    rotationMatrix.multiplySelf( mesa.matrix );
+
+    mesa = elements.mesa;
+    partes = mesa.children;
+    parent = new THREE.Object3D();
+    var pivot1 = new THREE.Object3D();
+    var pivot2 = new THREE.Object3D();
+    var pivot3 = new THREE.Object3D();
+    scene = elements.scene
+    pivot1.rotation.z = 0;
+    pivot2.rotation.z = Math.PI / 4;
+    pivot3.rotation.z = Math.PI / 2;
+    mesh1 = partes[3];
+    mesh2 = partes[21];
+    mesh3 = partes[30];
+    mesh1.position.y = 0;
+    mesh2.position.y = 0;
+    mesh3.position.y = 0;
+    pivot1.add( mesh1 );
+    pivot2.add( mesh2 );
+    pivot3.add( mesh3 );
+
+
 }
