@@ -17,3 +17,7 @@ html{
     align-content: center;
     margin: auto;
 }
+
+#control{
+    display: inline;
+}
