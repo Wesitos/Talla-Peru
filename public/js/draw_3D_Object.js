@@ -139,7 +139,9 @@ function initial_setup (container){
         console.log(item, loaded, total);
     }
     manager.onLoad = function (){
+        showObject(elements.mesa_1, true);
         toogleObj(elements.mesa_1, elements.mesa_2);
+        render()
     }
 
     // Cargamos la textura
@@ -158,6 +160,7 @@ function initial_setup (container){
             if ( child instanceof THREE.Mesh ) {
                 child.material.map = texture;
             }});
+        showObject(obj, false);
         elements.mesa_1 = obj;
         scene.add(obj);
         console.log("cargue!");        
