@@ -181,7 +181,6 @@ function initial_setup (container){
         render();
         girar(container, obj);
         scale(container,obj);
-        console.log(elements.mesa_1)
     })
 
     return {
