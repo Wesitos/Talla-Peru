@@ -86,14 +86,11 @@ function scale(container, object){
 
 function girar(container, object){
     // Event handler para girar la mesa
-    renderer = elements.renderer;
-    camera = elements.camera;
-    scene = elements.scene;
 
     $(container).bind('move', function (e) {
         object.rotation.y += e.deltaX * 0.005;
         object.rotation.x += e.deltaY * 0.005;
-        render(scene, camera, renderer);
+        render();
     })}
 
 function initial_setup (container){
@@ -197,64 +194,8 @@ function agrupa_objetos(obj, json_url){
 }
 
 
-function agrupar(){
-    var mesas = elements.mesa;
-    var partes = mesas.children; 
-    lista = ["pata-derecha-frente-top",
-              "pata-derecha-frente-mid",
-              "pata-derecha-frente-bottom",
-              "pata-derecha-atras-top",
-              "pata-derecha-atras-mid",
-              "pata-derecha-atras-bottom",
-              "vara-inferior-derecha",
-              "vara-superior-derecha"]    
-    
-    console.log(partes.length);
-    for (i=0;i<partes.length;i++){
-        nom = partes[i]['name'];
-        if (lista.indexOf(nom) != -1 ){
-            patader.add(partes[i])
-        }
-    }
-/*    $.each(partes,function(i,x){
-        nom = x.name
-        
-        if (lista.indexOf(nom) != -1 ){
-            console.log(nom)
-            patader.add(x)            
-        } 
-    })*/
-}
-
-var parent;
-function rotateaxe(){
-    mesa = elements.mesa;
-    parte = mesa.children[30];
-    parte.rotateOnAxis(new THREE.Vector3(1,1,1).normalize(),Math.PI/4); render()
-
-    var rotationMatrix = new THREE.Matrix4();
-    rotationMatrix.makeRotationAxis( new THREE.Vector3(1,1,1).normalize(), Math.PI/4);
-    rotationMatrix.multiplySelf( mesa.matrix );
-
-    mesa = elements.mesa;
-    partes = mesa.children;
-    parent = new THREE.Object3D();
-    var pivot1 = new THREE.Object3D();
-    var pivot2 = new THREE.Object3D();
-    var pivot3 = new THREE.Object3D();
-    scene = elements.scene
-    pivot1.rotation.z = 0;
-    pivot2.rotation.z = Math.PI / 4;
-    pivot3.rotation.z = Math.PI / 2;
-    mesh1 = partes[3];
-    mesh2 = partes[21];
-    mesh3 = partes[30];
-    mesh1.position.y = 0;
-    mesh2.position.y = 0;
-    mesh3.position.y = 0;
-    pivot1.add( mesh1 );
-    pivot2.add( mesh2 );
-    pivot3.add( mesh3 );
+function load_mesa_trans(){
 
 
 }
+
