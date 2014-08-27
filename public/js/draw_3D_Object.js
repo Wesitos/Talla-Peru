@@ -82,6 +82,21 @@ function scale(container, object){
         mesa = elements.mesa;
         render()
     })
+
+}
+
+function toogleObj(obj1, obj2){
+    $("#transform").bind("click", function(){
+        if (obj1.visible){
+            showObject(obj1, false);
+            showObject(obj2, true);
+        }
+        else{
+            showObject(obj1, true);
+            showObject(obj2, false);
+        }
+        render()
+    })
 }
 
 function girar(container, object){
@@ -123,6 +138,9 @@ function initial_setup (container){
     manager.onProgress = function (item, loaded, total){
         console.log(item, loaded, total);
     }
+    manager.onLoad = function (){
+        toogleObj(elements.mesa_1, elements.mesa_2);
+    }
 
     // Cargamos la textura
     var texture = new THREE.Texture();
@@ -140,15 +158,28 @@ function initial_setup (container){
             if ( child instanceof THREE.Mesh ) {
                 child.material.map = texture;
             }});
-        elements.mesa = obj;
+        elements.mesa_1 = obj;
         scene.add(obj);
         console.log("cargue!");        
         render();
         girar(container, obj);
         scale(container,obj);
-//        agrupar();
     })
 
+    loader.load('./obj/mesa_3.obj', function (obj) {
+        obj.traverse( function ( child ) {
+            if ( child instanceof THREE.Mesh ) {
+                child.material.map = texture;
+            }});
+        showObject(obj, false);
+        elements.mesa_2 = obj;
+        scene.add(obj);
+        console.log("cargue!");        
+        render();
+        girar(container, obj);
+        scale(container,obj);
+        console.log(elements.mesa_1)
+    })
 
     return {
         scene : scene,
@@ -193,9 +224,19 @@ function agrupa_objetos(obj, json_url){
     return lista_groups
 }
 
-
-function load_mesa_trans(){
-
-
+function showObject(obj, show){
+    if (show){
+        obj.visible = true;
+        obj.traverse( function(child){
+            if ( child instanceof THREE.Mesh ) {
+                child.visible = true;
+            }});
+    }
+    else{
+        obj.visible = false;
+        obj.traverse(function(child){
+            if ( child instanceof THREE.Mesh ) {
+                child.visible = false;
+            }});
+    }
 }
-
