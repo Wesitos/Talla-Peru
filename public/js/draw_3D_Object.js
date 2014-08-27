@@ -22,7 +22,7 @@ function scale(container, object){
     var nomx = 1,
         nomy = 2,
         nomz = 0.75;
-    var maxx = 1.2,
+    var maxx = 1.8,
         maxy = 2.5,
         maxz = 0.85;
     var minx = 0.8,
@@ -100,8 +100,8 @@ function initial_setup (container){
     //Configuramos la camara y el renderer inicial
     var loaded;
 
-    var width = 500;
-    var height = 400;
+    var width = 600;
+    var height = 500;
 
     // Creamos el objeto a "renderear" y lo agregamos al DOM
     var renderer = new THREE.WebGLRenderer({alpha: true});
