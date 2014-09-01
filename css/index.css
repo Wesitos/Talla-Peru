@@ -11,6 +11,13 @@ html{
     background-color: white;
 }
 
+#otromueble {
+    width: 600px;
+    height: 500px;
+    margin: auto;
+    background-color: gray;   
+}
+
 .contenedor{
     width: 500px;
     height: 400px;
