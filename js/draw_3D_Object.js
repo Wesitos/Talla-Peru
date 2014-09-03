@@ -167,7 +167,6 @@ function initial_setup (container){
         showObject(obj, false);
         elements.mesa_1 = obj;
         scene.add(obj);
-        console.log("cargue!");        
         render();
         girar(container, obj);
         scale(container,obj);
@@ -181,7 +180,6 @@ function initial_setup (container){
         showObject(obj, false);
         elements.mesa_2 = obj;
         scene.add(obj);
-        console.log("cargue!");        
         render();
         girar(container, obj);
         scale(container,obj);
@@ -198,7 +196,6 @@ function initial_setup (container){
         obj.scale.z = 0.03;
         elements.cama = obj;        
         scene.add(obj);
-        console.log("cargue!");        
         render();
         girar(container, obj);
         scale(container,obj);
@@ -215,7 +212,6 @@ function initial_setup (container){
         obj.scale.z = 0.03;
         elements.cama_librero = obj;        
         scene.add(obj);
-        console.log("cargue!");        
         render();
         girar(container, obj);
         scale(container,obj);
@@ -232,7 +228,6 @@ function initial_setup (container){
         obj.scale.z = 0.03;
         elements.escritorio = obj;        
         scene.add(obj);
-        console.log("cargue!");        
         render();
         girar(container, obj);
         scale(container,obj);
@@ -303,31 +298,28 @@ function select_type (){
 
     var val1 = 'a';
     var val2 = 'a';
-
-    
-    
     $( ".mueble" ).change(function() {
-        k = this.value;        
+        k = this.value;
+        var dim_controls = document.getElementById("dim_div");
+        dim_controls.style.display = "none";
         switch (k){
         case "1":
-            val1 = 'Mesa Comedor'
-            val2 = 'Mesa Centro'
+            val1 = 'Mesa Comedor';
+            val2 = 'Mesa Centro';
+            dim_controls.style.display = "";
             break;
         case "2":
-            val1 = 'Librero'
-            val2 = 'Cama'
+            val1 = 'Librero';
+            val2 = 'Cama';
             break;
         case "3":
-            val1 = 'Escritorio'
-            val2 = 'Cama'
+            val1 = 'Escritorio';
+            val2 = 'Cama';
             break;
         case "4":
-            val1 = 'Sofa'
-            val2 = 'Camarote'
+            val1 = 'Sofa';
+            val2 = 'Camarote';
             break;
-
-        default:
-            ;
         }
         show_object_by_id(k,1);
         radio = document.getElementById("opt1");
