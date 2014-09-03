@@ -20,7 +20,7 @@ function draw_3D_Object (container) {
 }
 
 function scale(container, object){
-    
+
     var nomx = 1,
         nomy = 2,
         nomz = 0.75;
@@ -121,11 +121,11 @@ function initial_setup (container){
     var renderer = new THREE.WebGLRenderer({alpha: true});
     renderer.setSize(width,height)
     container.appendChild(renderer.domElement);
-    
+
 
     //Creamos la camara que va mostrar la escena
     var camera = new THREE.PerspectiveCamera(30, width/height, 0.2, 1000);
-    camera.position.z = 200;        
+    camera.position.z = 200;
     //Creamos la escena que va mostar el objeto
     var scene = new THREE.Scene();
     scene.add(camera);
@@ -144,7 +144,6 @@ function initial_setup (container){
     manager.onLoad = function (){
         showObject(elements.cama_librero, true);
         showed = "cama_librero";
-        toogleObj(elements.mesa_1, elements.mesa_2);
         render()
     }
 
@@ -159,7 +158,7 @@ function initial_setup (container){
 
     // Cargamos el modelo
     var loader = new THREE.OBJLoader(manager);
-    loader.load('./obj/mesa.obj', function (obj) {
+    loader.load('./obj/mesa-comedor.obj', function (obj) {
         obj.traverse( function ( child ) {
             if ( child instanceof THREE.Mesh ) {
                 child.material.map = texture;
@@ -167,12 +166,11 @@ function initial_setup (container){
         showObject(obj, false);
         elements.mesa_1 = obj;
         scene.add(obj);
-        render();
         girar(container, obj);
         scale(container,obj);
     })
 
-    loader.load('./obj/mesa_3.obj', function (obj) {
+    loader.load('./obj/mesa-centro.obj', function (obj) {
         obj.traverse( function ( child ) {
             if ( child instanceof THREE.Mesh ) {
                 child.material.map = texture;
@@ -180,57 +178,50 @@ function initial_setup (container){
         showObject(obj, false);
         elements.mesa_2 = obj;
         scene.add(obj);
-        render();
         girar(container, obj);
         scale(container,obj);
     })
 
-    loader.load('./obj/cama.obj', function (obj) {
+    loader.load('./obj/static/cama-reducido.obj', function (obj) {
         obj.traverse( function ( child ) {
             if ( child instanceof THREE.Mesh ) {
                 child.material.map = texture;
             }});
         showObject(obj, false);
-        obj.scale.x = 0.03;
-        obj.scale.y = 0.03;
-        obj.scale.z = 0.03;
-        elements.cama = obj;        
+        obj.scale.x = 2;
+        obj.scale.y = 2;
+        obj.scale.z = 2;
+        elements.cama = obj;
         scene.add(obj);
-        render();
         girar(container, obj);
-        scale(container,obj);
     })
 
-    loader.load('./obj/cama-librero.obj', function (obj) {
+    loader.load('./obj/static/cama-librero-reducido.obj', function (obj) {
         obj.traverse( function ( child ) {
             if ( child instanceof THREE.Mesh ) {
                 child.material.map = texture;
             }});
         showObject(obj, false);
-        obj.scale.x = 0.03;
-        obj.scale.y = 0.03;
-        obj.scale.z = 0.03;
-        elements.cama_librero = obj;        
+        obj.scale.x = 2;
+        obj.scale.y = 2;
+        obj.scale.z = 2;
+        elements.cama_librero = obj;
         scene.add(obj);
-        render();
         girar(container, obj);
-        scale(container,obj);
     })
 
-    loader.load('./obj/escritorio.obj', function (obj) {
+    loader.load('./obj/static/escritorio-reducido.obj', function (obj) {
         obj.traverse( function ( child ) {
             if ( child instanceof THREE.Mesh ) {
                 child.material.map = texture;
             }});
         showObject(obj, false);
-        obj.scale.x = 0.03;
-        obj.scale.y = 0.03;
-        obj.scale.z = 0.03;
-        elements.escritorio = obj;        
+        obj.scale.x = 2;
+        obj.scale.y = 2;
+        obj.scale.z = 2;
+        elements.escritorio = obj;
         scene.add(obj);
-        render();
         girar(container, obj);
-        scale(container,obj);
     })
 
 
@@ -325,9 +316,9 @@ function select_type (){
         radio = document.getElementById("opt1");
         radio.checked = true;
         $('label[for=opt1]').html(val1);
-        $('label[for=opt2]').html(val2);        
+        $('label[for=opt2]').html(val2);
     });
- 
+
     $("input[name=tipo]").click(function(){
         val = this.id;
         val = val[3];
@@ -345,20 +336,18 @@ function show_object_by_id(grupo,tipo){
         ["mesa-comedor.obj", "mesa-centro.obj"],
         ["cama", "cama_librero"],
         ["escritorio", "cama"],
-        ["sofa-min.obj", "camarote-min.obj"],   
+        ["sofa-min.obj", "camarote-min.obj"],
     ]
     h = tipo*(-1)+1;
-    obj_show = id_object[grupo][tipo];    
+    obj_show = id_object[grupo][tipo];
     //obj_hide = id_object[grupo][h];
 
     //obj_show es el objeto que debe ser mostrado
     showObject(elements[showed],false);
     showObject(elements[obj_show],true);
     showed = obj_show;
-    
+
     render();
-    
+
 
 }
-
-
