@@ -11,7 +11,6 @@ function draw_3D_Object (container) {
 
     // Creamos la escena y todos sus elementos
     elements = initial_setup(container);
-    select_type()
 
     renderer = elements.renderer;
     camera = elements.camera;
@@ -142,8 +141,10 @@ function initial_setup (container){
         console.log(item, loaded, total);
     }
     manager.onLoad = function (){
-        showObject(elements.cama_librero, true);
-        showed = "cama_librero";
+        select_type();
+        document.getElementById("controles").style.display = "";
+        showObject(elements.mesa_comedor, true);
+        showed = "mesa_comedor";
         render()
     }
 
@@ -164,7 +165,7 @@ function initial_setup (container){
                 child.material.map = texture;
             }});
         showObject(obj, false);
-        elements.mesa_1 = obj;
+        elements.mesa_comedor = obj;
         scene.add(obj);
         girar(container, obj);
         scale(container,obj);
@@ -176,7 +177,7 @@ function initial_setup (container){
                 child.material.map = texture;
             }});
         showObject(obj, false);
-        elements.mesa_2 = obj;
+        elements.mesa_centro = obj;
         scene.add(obj);
         girar(container, obj);
         scale(container,obj);
@@ -206,6 +207,20 @@ function initial_setup (container){
         obj.scale.y = 2;
         obj.scale.z = 2;
         elements.cama_librero = obj;
+        scene.add(obj);
+        girar(container, obj);
+    })
+
+    loader.load('./obj/static/cama-librero-cerrado.obj', function (obj) {
+        obj.traverse( function ( child ) {
+            if ( child instanceof THREE.Mesh ) {
+                child.material.map = texture;
+            }});
+        showObject(obj, false);
+        obj.scale.x = 2;
+        obj.scale.y = 2;
+        obj.scale.z = 2;
+        elements.librero = obj;
         scene.add(obj);
         girar(container, obj);
     })
@@ -333,8 +348,8 @@ function show_object_by_id(grupo,tipo){
     grupo = parseInt(grupo)-1;
     tipo = parseInt(tipo)-1;
     id_object = [
-        ["mesa-comedor.obj", "mesa-centro.obj"],
-        ["cama", "cama_librero"],
+        ["mesa_comedor", "mesa_centro"],
+        ["librero", "cama_librero"],
         ["escritorio", "cama"],
         ["sofa-min.obj", "camarote-min.obj"],
     ]
