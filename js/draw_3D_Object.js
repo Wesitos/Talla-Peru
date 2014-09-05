@@ -2,20 +2,10 @@ var elements;
 var global;
 var showed;
 
-var patader = new THREE.Object3D();
-
 function draw_3D_Object (container) {
-
-    var mesa;
-    var renderer,camera,scene;
-
-    // Creamos la escena y todos sus elementos
-    elements = initial_setup(container);
-
-    renderer = elements.renderer;
-    camera = elements.camera;
-    scene = elements.scene;
-    mesa = elements.mesa;
+  
+    elements = initial_setup(container);    
+  
 }
 
 function scale(container, object){
@@ -140,6 +130,15 @@ function initial_setup (container){
     manager.onProgress = function (item, loaded, total){
         console.log(item, loaded, total);
     }
+
+//    select_type();
+// 
+// 
+// 
+    //    render()
+   
+    
+    
     manager.onLoad = function (){
         select_type();
         document.getElementById("controles").style.display = "";
@@ -169,6 +168,7 @@ function initial_setup (container){
         scene.add(obj);
         girar(container, obj);
         scale(container,obj);
+        render()
     })
 
     loader.load('./obj/mesa-centro.obj', function (obj) {
@@ -245,7 +245,7 @@ function initial_setup (container){
         obj.scale.x = 0.03;
         obj.scale.y = 0.03;
         obj.scale.z = 0.03;
-        elements.sofa = obj;
+        elements.camarote = obj;
         scene.add(obj);
         girar(container, obj);
     })
@@ -256,7 +256,7 @@ function initial_setup (container){
         obj.scale.x = 0.03;
         obj.scale.y = 0.03;
         obj.scale.z = 0.03;
-        elements.camarote = obj;
+        elements.sofa = obj;
         scene.add(obj);
         girar(container, obj);
     })
@@ -292,33 +292,33 @@ function render () {
     renderer.render(scene, camera);
 }
 
-function agrupa_objetos(obj, json_url){
-    var lista_groups = [];
-    var json_obj = JSON.parse($.ajax({
-        type: 'GET',
-        url: json_url,
-        dataType: 'json',
-        async: false
-    }).responseText);
+// function agrupa_objetos(obj, json_url){
+//     var lista_groups = [];
+//     var json_obj = JSON.parse($.ajax({
+//         type: 'GET',
+//         url: json_url,
+//         dataType: 'json',
+//         async: false
+//     }).responseText);
 
-    var groups = json_obj.groups
-    for (var i=0; i < groups.length; i++){
-        group = groups[i];
-        grp = new THREE.Object3D();
-        grp.name = group.parent;
-        for (var j=0; j < group.length; i++){
-            obj.traverse(function(child){
-                if (child instanceof THREE.Mesh){
-                    if (group.children.indexOf(child.name)!= -1){
-                        grp.add(child);
-                    }
-                }
-            });
-        }
-        lista_groups.concat(grp)
-    }
-    return lista_groups
-}
+//     var groups = json_obj.groups
+//     for (var i=0; i < groups.length; i++){
+//         group = groups[i];
+//         grp = new THREE.Object3D();
+//         grp.name = group.parent;
+//         for (var j=0; j < group.length; i++){
+//             obj.traverse(function(child){
+//                 if (child instanceof THREE.Mesh){
+//                     if (group.children.indexOf(child.name)!= -1){
+//                         grp.add(child);
+//                     }
+//                 }
+//             });
+//         }
+//         lista_groups.concat(grp)
+//     }
+//     return lista_groups
+// }
 
 function showObject(obj, show){
     if (show){
