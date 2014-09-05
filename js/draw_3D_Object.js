@@ -107,6 +107,8 @@ function initial_setup (container){
     var height = 500;
 
     $(".mueble").val(1);
+    radio = document.getElementById("opt1");
+    radio.checked = true;
 
     // Creamos el objeto a "renderear" y lo agregamos al DOM
     var renderer = new THREE.WebGLRenderer({alpha: true});
