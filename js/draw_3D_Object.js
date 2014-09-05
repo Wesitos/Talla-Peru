@@ -150,6 +150,7 @@ function initial_setup (container){
     loader.load('./obj/mesa-comedor.obj', function (obj) {
         obj.traverse( function ( child ) {
             if ( child instanceof THREE.Mesh ) {
+                texture.needsUpdate = true;
                 child.material.map = texture;
             }});
         showObject(obj, false);
