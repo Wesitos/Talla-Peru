@@ -130,20 +130,9 @@ function initial_setup (container){
     manager.onProgress = function (item, loaded, total){
         console.log(item, loaded, total);
     }
-
-//    select_type();
-// 
-// 
-// 
-    //    render()
-   
-    
     
     manager.onLoad = function (){
-        select_type();
-        document.getElementById("controles").style.display = "";
-        showObject(elements.mesa_comedor, true);
-        showed = "mesa_comedor";
+        select_type();        
         render()
     }
 
@@ -168,6 +157,9 @@ function initial_setup (container){
         scene.add(obj);
         girar(container, obj);
         scale(container,obj);
+        showObject(elements.mesa_comedor, true);
+        showed = "mesa_comedor";
+        document.getElementById("controles").style.display = "";
         render()
     })
 
@@ -181,6 +173,7 @@ function initial_setup (container){
         scene.add(obj);
         girar(container, obj);
         scale(container,obj);
+        render()
     })
 
     loader.load('./obj/static/cama-reducido.obj', function (obj) {
@@ -197,33 +190,33 @@ function initial_setup (container){
         girar(container, obj);
     })
 
-    // loader.load('./obj/static/cama-librero-reducido.obj', function (obj) {
-    //     obj.traverse( function ( child ) {
-    //         if ( child instanceof THREE.Mesh ) {
-    //             child.material.map = texture;
-    //         }});
-    //     showObject(obj, false);
-    //     obj.scale.x = 2;
-    //     obj.scale.y = 2;
-    //     obj.scale.z = 2;
-    //     elements.cama_librero = obj;
-    //     scene.add(obj);
-    //     girar(container, obj);
-    // })
+    loader.load('./obj/static/cama-librero-reducido.obj', function (obj) {
+        obj.traverse( function ( child ) {
+            if ( child instanceof THREE.Mesh ) {
+                child.material.map = texture;
+            }});
+        showObject(obj, false);
+        obj.scale.x = 2;
+        obj.scale.y = 2;
+        obj.scale.z = 2;
+        elements.cama_librero = obj;
+        scene.add(obj);
+        girar(container, obj);
+    })
 
-    // loader.load('./obj/static/cama-librero-cerrado.obj', function (obj) {
-    //     obj.traverse( function ( child ) {
-    //         if ( child instanceof THREE.Mesh ) {
-    //             child.material.map = texture;
-    //         }});
-    //     showObject(obj, false);
-    //     obj.scale.x = 2;
-    //     obj.scale.y = 2;
-    //     obj.scale.z = 2;
-    //     elements.librero = obj;
-    //     scene.add(obj);
-    //     girar(container, obj);
-    // })
+    loader.load('./obj/static/cama-librero-cerrado.obj', function (obj) {
+        obj.traverse( function ( child ) {
+            if ( child instanceof THREE.Mesh ) {
+                child.material.map = texture;
+            }});
+        showObject(obj, false);
+        obj.scale.x = 2;
+        obj.scale.y = 2;
+        obj.scale.z = 2;
+        elements.librero = obj;
+        scene.add(obj);
+        girar(container, obj);
+    })
 
     loader.load('./obj/static/escritorio-reducido.obj', function (obj) {
         obj.traverse( function ( child ) {
