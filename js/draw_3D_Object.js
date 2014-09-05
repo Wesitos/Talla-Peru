@@ -188,9 +188,9 @@ function initial_setup (container){
                 child.material.map = texture;
             }});
         showObject(obj, false);
-        obj.scale.x = 2;
-        obj.scale.y = 2;
-        obj.scale.z = 2;
+        obj.scale.x = 3;
+        obj.scale.y = 3;
+        obj.scale.z = 3;
         elements.cama = obj;
         scene.add(obj);
         girar(container, obj);
@@ -230,9 +230,9 @@ function initial_setup (container){
                 child.material.map = texture;
             }});
         showObject(obj, false);
-        obj.scale.x = 2;
-        obj.scale.y = 2;
-        obj.scale.z = 2;
+        obj.scale.x = 3;
+        obj.scale.y = 3;
+        obj.scale.z = 3;
         elements.escritorio = obj;
         scene.add(obj);
         girar(container, obj);
