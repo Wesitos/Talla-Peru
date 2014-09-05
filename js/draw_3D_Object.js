@@ -197,33 +197,33 @@ function initial_setup (container){
         girar(container, obj);
     })
 
-    loader.load('./obj/static/cama-librero-reducido.obj', function (obj) {
-        obj.traverse( function ( child ) {
-            if ( child instanceof THREE.Mesh ) {
-                child.material.map = texture;
-            }});
-        showObject(obj, false);
-        obj.scale.x = 2;
-        obj.scale.y = 2;
-        obj.scale.z = 2;
-        elements.cama_librero = obj;
-        scene.add(obj);
-        girar(container, obj);
-    })
+    // loader.load('./obj/static/cama-librero-reducido.obj', function (obj) {
+    //     obj.traverse( function ( child ) {
+    //         if ( child instanceof THREE.Mesh ) {
+    //             child.material.map = texture;
+    //         }});
+    //     showObject(obj, false);
+    //     obj.scale.x = 2;
+    //     obj.scale.y = 2;
+    //     obj.scale.z = 2;
+    //     elements.cama_librero = obj;
+    //     scene.add(obj);
+    //     girar(container, obj);
+    // })
 
-    loader.load('./obj/static/cama-librero-cerrado.obj', function (obj) {
-        obj.traverse( function ( child ) {
-            if ( child instanceof THREE.Mesh ) {
-                child.material.map = texture;
-            }});
-        showObject(obj, false);
-        obj.scale.x = 2;
-        obj.scale.y = 2;
-        obj.scale.z = 2;
-        elements.librero = obj;
-        scene.add(obj);
-        girar(container, obj);
-    })
+    // loader.load('./obj/static/cama-librero-cerrado.obj', function (obj) {
+    //     obj.traverse( function ( child ) {
+    //         if ( child instanceof THREE.Mesh ) {
+    //             child.material.map = texture;
+    //         }});
+    //     showObject(obj, false);
+    //     obj.scale.x = 2;
+    //     obj.scale.y = 2;
+    //     obj.scale.z = 2;
+    //     elements.librero = obj;
+    //     scene.add(obj);
+    //     girar(container, obj);
+    // })
 
     loader.load('./obj/static/escritorio-reducido.obj', function (obj) {
         obj.traverse( function ( child ) {
@@ -238,6 +238,43 @@ function initial_setup (container){
         scene.add(obj);
         girar(container, obj);
     })
+
+    loader.load('./obj/static/camarote(sofa)-min.obj', function (obj) {
+        
+        showObject(obj, false);
+        obj.scale.x = 0.03;
+        obj.scale.y = 0.03;
+        obj.scale.z = 0.03;
+        elements.sofa = obj;
+        scene.add(obj);
+        girar(container, obj);
+    })
+
+    loader.load('./obj/static/sofa(camarote)-min.obj', function (obj) {
+        
+        showObject(obj, false);
+        obj.scale.x = 0.03;
+        obj.scale.y = 0.03;
+        obj.scale.z = 0.03;
+        elements.camarote = obj;
+        scene.add(obj);
+        girar(container, obj);
+    })
+
+    
+    // loader.load('./obj/static/escritorio-reducido.obj', function (obj) {
+    //     obj.traverse( function ( child ) {
+    //         if ( child instanceof THREE.Mesh ) {
+    //             child.material.map = texture;
+    //         }});
+    //     showObject(obj, false);
+    //     obj.scale.x = 2;
+    //     obj.scale.y = 2;
+    //     obj.scale.z = 2;
+    //     elements.escritorio = obj;
+    //     scene.add(obj);
+    //     girar(container, obj);
+    // })
 
 
     return {
@@ -335,8 +372,8 @@ function select_type (){
     });
 
     $("input[name=tipo]").click(function(){
-        val = this.id;
-        val = val[3];
+        val = this.id; 
+        val = val[3]; // Modo 1 o 2 del mueble
         grupo = $(".mueble").val();
         show_object_by_id(grupo,val);
     })
@@ -351,7 +388,7 @@ function show_object_by_id(grupo,tipo){
         ["mesa_comedor", "mesa_centro"],
         ["librero", "cama_librero"],
         ["escritorio", "cama"],
-        ["sofa-min.obj", "camarote-min.obj"],
+        ["sofa", "camarote"],
     ]
     h = tipo*(-1)+1;
     obj_show = id_object[grupo][tipo];

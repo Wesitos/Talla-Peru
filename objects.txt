@@ -1,0 +1,6 @@
+mesa-centro.obj                 107.8kB
+mesa-comedor.obj                108.7kB
+cama-reducido.obj               180.6kB
+cama-librero-reducido.obj       1.2MB
+cama-librero-cerrado.obj        5.2MB
+escritorio-reducido.obj         519.0kB
