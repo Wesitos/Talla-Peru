@@ -106,6 +106,8 @@ function initial_setup (container){
     var width = 600;
     var height = 500;
 
+    $(".mueble").val(1);
+
     // Creamos el objeto a "renderear" y lo agregamos al DOM
     var renderer = new THREE.WebGLRenderer({alpha: true});
     renderer.setSize(width,height)
@@ -130,9 +132,12 @@ function initial_setup (container){
     manager.onProgress = function (item, loaded, total){
         console.log(item, loaded, total);
     }
+
+    document.getElementById("controles").style.display = "";
+    select_type();
     
-    manager.onLoad = function (){
-        select_type();        
+    manager.onLoad = function (){        
+        showed = "mesa_comedor";
         render()
     }
 
@@ -153,14 +158,14 @@ function initial_setup (container){
                 texture.needsUpdate = true;
                 child.material.map = texture;
             }});
-        showObject(obj, false);
+        showObject(obj, true);
         elements.mesa_comedor = obj;
         scene.add(obj);
         girar(container, obj);
         scale(container,obj);
-        showObject(elements.mesa_comedor, true);
+//        showObject(elements.mesa_comedor, true);        
+//        document.getElementById("controles").style.display = "";
         showed = "mesa_comedor";
-        document.getElementById("controles").style.display = "";
         render()
     })
 
@@ -211,9 +216,9 @@ function initial_setup (container){
                 child.material.map = texture;
             }});
         showObject(obj, false);
-        obj.scale.x = 2;
-        obj.scale.y = 2;
-        obj.scale.z = 2;
+        obj.scale.x = 3.8;
+        obj.scale.y = 3.8;
+        obj.scale.z = 3.8;
         elements.librero = obj;
         scene.add(obj);
         girar(container, obj);
