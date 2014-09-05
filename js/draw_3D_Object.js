@@ -241,22 +241,28 @@ function initial_setup (container){
     })
 
     loader.load('./obj/static/camarote(sofa)-min.obj', function (obj) {
-        
+        obj.traverse( function ( child ) {
+            if ( child instanceof THREE.Mesh ) {
+                child.material.map = texture;
+            }});
         showObject(obj, false);
-        obj.scale.x = 0.03;
-        obj.scale.y = 0.03;
-        obj.scale.z = 0.03;
+        obj.scale.x = 3;
+        obj.scale.y = 3;
+        obj.scale.z = 3;
         elements.camarote = obj;
         scene.add(obj);
         girar(container, obj);
     })
 
     loader.load('./obj/static/sofa(camarote)-min.obj', function (obj) {
-        
+        obj.traverse( function ( child ) {
+            if ( child instanceof THREE.Mesh ) {
+                child.material.map = texture;
+            }});
         showObject(obj, false);
-        obj.scale.x = 0.03;
-        obj.scale.y = 0.03;
-        obj.scale.z = 0.03;
+        obj.scale.x = 3;
+        obj.scale.y = 3;
+        obj.scale.z = 3;
         elements.sofa = obj;
         scene.add(obj);
         girar(container, obj);
