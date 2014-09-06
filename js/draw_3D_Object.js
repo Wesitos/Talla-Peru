@@ -128,42 +128,59 @@ function initial_setup (container){
     scene.add(directionalLight);
 
     // Loading managers
+    is_loaded(false);
 
     var loaded ={ mesa: false,
                   librero: false,
                   escritorio: false,
                   sofa: false,
                 };
+    function is_loaded(x){
+        if(x){
+            $("canvas").show();
+            $("#loading").hide();
+        }else{
+            $("canvas").hide();
+            $("#loading").show();
+        }
+    }
 
-    var manager_texture = new THREE.LoadingManager(function onLoad(){
-
+    var manager_texture = new THREE.LoadingManager(function onLoad(){        
         render()
-    }, function onProgress (item, loaded, total){
+    }, function onProgress (item, loaded, total){        
         console.log(item, loaded, total);
     });
 
     var manager_mesa = new THREE.LoadingManager(function onLoad(){
         elements.loaded.mesa = true;
+        is_loaded(true);
     }, function onProgress (item, loaded, total){
         console.log(item, loaded, total);
+        is_loaded(false);
     });
 
     var manager_librero = new THREE.LoadingManager(function onLoad(){
         elements.loaded.librero = true;
+        is_loaded(true);
     }, function onProgress (item, loaded, total){
         console.log(item, loaded, total);
+        is_loaded(false);
     });
 
     var manager_escritorio = new THREE.LoadingManager(function onLoad(){
         elements.loaded.escritorio = true;
+        is_loaded(false);
     }, function onProgress (item, loaded, total){
         console.log(item, loaded, total);
+        is_loaded(false);
     });
 
     var manager_sofa = new THREE.LoadingManager(function onLoad(){
         elements.loaded.sofa = true;
+        is_loaded(false);
     }, function onProgress (item, loaded, total){
         console.log(item, loaded, total);
+        is_loaded(false);
     });
 
     document.getElementById("controles").style.display = "";
