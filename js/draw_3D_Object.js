@@ -1,6 +1,6 @@
 var elements;
 var global;
-var showed;
+var showed = false;
 
 function draw_3D_Object (container) {
 
@@ -393,7 +393,8 @@ function show_object_by_id(grupo,tipo){
     //obj_hide = id_object[grupo][h];
 
     //obj_show es el objeto que debe ser mostrado
-    showObject(elements[showed],false);
+    if (showed)
+    {showObject(elements[showed],false);}
     showObject(elements[obj_show],true);
     showed = obj_show;
 
