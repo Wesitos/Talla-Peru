@@ -268,22 +268,6 @@ function initial_setup (container){
         girar(container, obj);
     })
 
-    
-    // loader.load('./obj/static/escritorio-reducido.obj', function (obj) {
-    //     obj.traverse( function ( child ) {
-    //         if ( child instanceof THREE.Mesh ) {
-    //             child.material.map = texture;
-    //         }});
-    //     showObject(obj, false);
-    //     obj.scale.x = 2;
-    //     obj.scale.y = 2;
-    //     obj.scale.z = 2;
-    //     elements.escritorio = obj;
-    //     scene.add(obj);
-    //     girar(container, obj);
-    // })
-
-
     return {
         scene : scene,
         camera : camera,
@@ -298,34 +282,6 @@ function render () {
     scene = elements.scene;
     renderer.render(scene, camera);
 }
-
-// function agrupa_objetos(obj, json_url){
-//     var lista_groups = [];
-//     var json_obj = JSON.parse($.ajax({
-//         type: 'GET',
-//         url: json_url,
-//         dataType: 'json',
-//         async: false
-//     }).responseText);
-
-//     var groups = json_obj.groups
-//     for (var i=0; i < groups.length; i++){
-//         group = groups[i];
-//         grp = new THREE.Object3D();
-//         grp.name = group.parent;
-//         for (var j=0; j < group.length; i++){
-//             obj.traverse(function(child){
-//                 if (child instanceof THREE.Mesh){
-//                     if (group.children.indexOf(child.name)!= -1){
-//                         grp.add(child);
-//                     }
-//                 }
-//             });
-//         }
-//         lista_groups.concat(grp)
-//     }
-//     return lista_groups
-// }
 
 function showObject(obj, show){
     if (show){
