@@ -206,6 +206,7 @@ function initial_setup (container){
                 texture.needsUpdate = true;
                 child.material.map = texture;
             }});
+        obj.name = "mesa_comedor";
         showObject(obj, true);
         showed = "mesa_comedor";
         elements.mesa_comedor = obj;
@@ -220,6 +221,7 @@ function initial_setup (container){
             if ( child instanceof THREE.Mesh ) {
                 child.material.map = texture;
             }});
+        obj.name = "mesa_centro";
         showObject(obj, false);
         elements.mesa_centro = obj;
         scene.add(obj);
@@ -233,6 +235,7 @@ function initial_setup (container){
             if ( child instanceof THREE.Mesh ) {
                 child.material.map = texture;
             }});
+        obj.name = "cama_librero";
         showObject(obj, false);
         elements.cama_librero = obj;
         scene.add(obj);
@@ -244,6 +247,7 @@ function initial_setup (container){
             if ( child instanceof THREE.Mesh ) {
                 child.material.map = texture;
             }});
+        obj.name = "librero";
         showObject(obj, false);
         elements.librero = obj;
         scene.add(obj);
@@ -255,6 +259,7 @@ function initial_setup (container){
             if ( child instanceof THREE.Mesh ) {
                 child.material.map = texture;
             }});
+        obj.name = "cama";
         showObject(obj, false);
         elements.cama = obj;
         scene.add(obj);
@@ -266,6 +271,7 @@ function initial_setup (container){
             if ( child instanceof THREE.Mesh ) {
                 child.material.map = texture;
             }});
+        obj.name = "escritorio";
         showObject(obj, false);
         elements.escritorio = obj;
         scene.add(obj);
@@ -277,6 +283,7 @@ function initial_setup (container){
             if ( child instanceof THREE.Mesh ) {
                 child.material.map = texture;
             }});
+        obj.name = "camarote";
         showObject(obj, false);
         elements.camarote = obj;
         scene.add(obj);
@@ -288,6 +295,7 @@ function initial_setup (container){
             if ( child instanceof THREE.Mesh ) {
                 child.material.map = texture;
             }});
+        obj.name = "sofa";
         showObject(obj, false);
         elements.sofa = obj;
         scene.add(obj);
