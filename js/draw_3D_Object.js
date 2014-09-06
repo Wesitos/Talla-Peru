@@ -206,12 +206,14 @@ function initial_setup (container){
                 texture.needsUpdate = true;
                 child.material.map = texture;
             }});
-        showObject(obj, false);
+        showObject(obj, true);
+        showed = "mesa_comedor";
         elements.mesa_comedor = obj;
         scene.add(obj);
         girar(container, obj);
         scale(container,obj);
-    })
+        render();
+    });
 
     loader_mesa.load('./obj/mesa-centro.obj', function (obj) {
         obj.traverse( function ( child ) {
@@ -224,7 +226,7 @@ function initial_setup (container){
 
         girar(container, obj);
         scale(container,obj);
-    })
+    });
 
     loader_librero.load('./obj/static/cama-librero-reducido.obj', function (obj) {
         obj.traverse( function ( child ) {
@@ -232,13 +234,10 @@ function initial_setup (container){
                 child.material.map = texture;
             }});
         showObject(obj, false);
-        obj.scale.x = 2;
-        obj.scale.y = 2;
-        obj.scale.z = 2;
         elements.cama_librero = obj;
         scene.add(obj);
         girar(container, obj);
-    })
+    });
 
     loader_librero.load('./obj/static/cama-librero-cerrado.obj', function (obj) {
         obj.traverse( function ( child ) {
@@ -246,13 +245,10 @@ function initial_setup (container){
                 child.material.map = texture;
             }});
         showObject(obj, false);
-        obj.scale.x = 3.8;
-        obj.scale.y = 3.8;
-        obj.scale.z = 3.8;
         elements.librero = obj;
         scene.add(obj);
         girar(container, obj);
-    })
+    });
 
     loader_escritorio.load('./obj/static/cama-reducido.obj', function (obj) {
         obj.traverse( function ( child ) {
@@ -260,9 +256,6 @@ function initial_setup (container){
                 child.material.map = texture;
             }});
         showObject(obj, false);
-        obj.scale.x = 3;
-        obj.scale.y = 3;
-        obj.scale.z = 3;
         elements.cama = obj;
         scene.add(obj);
         girar(container, obj);
@@ -274,9 +267,6 @@ function initial_setup (container){
                 child.material.map = texture;
             }});
         showObject(obj, false);
-        obj.scale.x = 3;
-        obj.scale.y = 3;
-        obj.scale.z = 3;
         elements.escritorio = obj;
         scene.add(obj);
         girar(container, obj);
@@ -288,9 +278,6 @@ function initial_setup (container){
                 child.material.map = texture;
             }});
         showObject(obj, false);
-        obj.scale.x = 3;
-        obj.scale.y = 3;
-        obj.scale.z = 3;
         elements.camarote = obj;
         scene.add(obj);
         girar(container, obj);
@@ -302,9 +289,6 @@ function initial_setup (container){
                 child.material.map = texture;
             }});
         showObject(obj, false);
-        obj.scale.x = 3;
-        obj.scale.y = 3;
-        obj.scale.z = 3;
         elements.sofa = obj;
         scene.add(obj);
         girar(container, obj);
