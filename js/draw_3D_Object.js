@@ -209,13 +209,8 @@ function initial_setup (container){
         showObject(obj, false);
         elements.mesa_comedor = obj;
         scene.add(obj);
-
         girar(container, obj);
         scale(container,obj);
-
-        showObject(elements.mesa_comedor, true);
-        document.getElementById("controles").style.display = "";
-        showed = "mesa_comedor";
     })
 
     loader_mesa.load('./obj/mesa-centro.obj', function (obj) {
