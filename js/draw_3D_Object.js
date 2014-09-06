@@ -3,9 +3,9 @@ var global;
 var showed;
 
 function draw_3D_Object (container) {
-  
-    elements = initial_setup(container);    
-  
+
+    elements = initial_setup(container);
+
 }
 
 function scale(container, object){
@@ -101,7 +101,6 @@ function girar(container, object){
 
 function initial_setup (container){
     //Configuramos la camara y el renderer inicial
-    var loaded;
 
     var width = 600;
     var height = 500;
@@ -128,50 +127,81 @@ function initial_setup (container){
     directionalLight.position.set(0, 1, 1);
     scene.add(directionalLight);
 
-    /*Agregamos sth */
-    var manager = new THREE.LoadingManager();
-    global = loader;
-    manager.onProgress = function (item, loaded, total){
+    // Loading managers
+
+    var loaded ={ mesa: false,
+                  librero: false,
+                  escritorio: false,
+                  sofa: false,
+                };
+
+    var manager_texture = new THREE.LoadingManager(function onLoad(){
+
+        render()
+    }, function onProgress (item, loaded, total){
         console.log(item, loaded, total);
-    }
+    });
+
+    var manager_mesa = new THREE.LoadingManager(function onLoad(){
+        elements.loaded.mesa = true;
+    }, function onProgress (item, loaded, total){
+        console.log(item, loaded, total);
+    });
+
+    var manager_librero = new THREE.LoadingManager(function onLoad(){
+        elements.loaded.librero = true;
+    }, function onProgress (item, loaded, total){
+        console.log(item, loaded, total);
+    });
+
+    var manager_escritorio = new THREE.LoadingManager(function onLoad(){
+        elements.loaded.escritorio = true;
+    }, function onProgress (item, loaded, total){
+        console.log(item, loaded, total);
+    });
+
+    var manager_sofa = new THREE.LoadingManager(function onLoad(){
+        elements.loaded.sofa = true;
+    }, function onProgress (item, loaded, total){
+        console.log(item, loaded, total);
+    });
 
     document.getElementById("controles").style.display = "";
     select_type();
-    
-    manager.onLoad = function (){        
-        showed = "mesa_comedor";
-        render()
-    }
 
     // Cargamos la textura
     var texture = new THREE.Texture();
-    var loader = new THREE.ImageLoader(manager);
-    loader.load( './img/wood.jpg', function ( image ) {
+    var loader_texture = new THREE.ImageLoader(manager_texture);
+    loader_texture.load( './img/wood.jpg', function ( image ) {
         texture.image = image;
         texture.needsUpdate = true;
         render();
     } );
 
     // Cargamos el modelo
-    var loader = new THREE.OBJLoader(manager);
-    loader.load('./obj/mesa-comedor.obj', function (obj) {
+    var loader_mesa = new THREE.OBJLoader(manager_mesa);
+    var loader_librero = new THREE.OBJLoader(manager_librero);
+    var loader_escritorio = new THREE.OBJLoader(manager_escritorio);
+    var loader_sofa = new THREE.OBJLoader(manager_sofa);
+    loader_mesa.load('./obj/mesa-comedor.obj', function (obj) {
         obj.traverse( function ( child ) {
             if ( child instanceof THREE.Mesh ) {
                 texture.needsUpdate = true;
                 child.material.map = texture;
             }});
-        showObject(obj, true);
+        showObject(obj, false);
         elements.mesa_comedor = obj;
         scene.add(obj);
+
         girar(container, obj);
         scale(container,obj);
-//        showObject(elements.mesa_comedor, true);        
-//        document.getElementById("controles").style.display = "";
+
+        showObject(elements.mesa_comedor, true);
+        document.getElementById("controles").style.display = "";
         showed = "mesa_comedor";
-        render()
     })
 
-    loader.load('./obj/mesa-centro.obj', function (obj) {
+    loader_mesa.load('./obj/mesa-centro.obj', function (obj) {
         obj.traverse( function ( child ) {
             if ( child instanceof THREE.Mesh ) {
                 child.material.map = texture;
@@ -179,26 +209,12 @@ function initial_setup (container){
         showObject(obj, false);
         elements.mesa_centro = obj;
         scene.add(obj);
+
         girar(container, obj);
         scale(container,obj);
-        render()
     })
 
-    loader.load('./obj/static/cama-reducido.obj', function (obj) {
-        obj.traverse( function ( child ) {
-            if ( child instanceof THREE.Mesh ) {
-                child.material.map = texture;
-            }});
-        showObject(obj, false);
-        obj.scale.x = 3;
-        obj.scale.y = 3;
-        obj.scale.z = 3;
-        elements.cama = obj;
-        scene.add(obj);
-        girar(container, obj);
-    })
-
-    loader.load('./obj/static/cama-librero-reducido.obj', function (obj) {
+    loader_librero.load('./obj/static/cama-librero-reducido.obj', function (obj) {
         obj.traverse( function ( child ) {
             if ( child instanceof THREE.Mesh ) {
                 child.material.map = texture;
@@ -212,7 +228,7 @@ function initial_setup (container){
         girar(container, obj);
     })
 
-    loader.load('./obj/static/cama-librero-cerrado.obj', function (obj) {
+    loader_librero.load('./obj/static/cama-librero-cerrado.obj', function (obj) {
         obj.traverse( function ( child ) {
             if ( child instanceof THREE.Mesh ) {
                 child.material.map = texture;
@@ -226,7 +242,21 @@ function initial_setup (container){
         girar(container, obj);
     })
 
-    loader.load('./obj/static/escritorio-reducido.obj', function (obj) {
+    loader_escritorio.load('./obj/static/cama-reducido.obj', function (obj) {
+        obj.traverse( function ( child ) {
+            if ( child instanceof THREE.Mesh ) {
+                child.material.map = texture;
+            }});
+        showObject(obj, false);
+        obj.scale.x = 3;
+        obj.scale.y = 3;
+        obj.scale.z = 3;
+        elements.cama = obj;
+        scene.add(obj);
+        girar(container, obj);
+    })
+
+    loader_escritorio.load('./obj/static/escritorio-reducido.obj', function (obj) {
         obj.traverse( function ( child ) {
             if ( child instanceof THREE.Mesh ) {
                 child.material.map = texture;
@@ -240,7 +270,7 @@ function initial_setup (container){
         girar(container, obj);
     })
 
-    loader.load('./obj/static/camarote(sofa)-min.obj', function (obj) {
+    loader_sofa.load('./obj/static/camarote(sofa)-min.obj', function (obj) {
         obj.traverse( function ( child ) {
             if ( child instanceof THREE.Mesh ) {
                 child.material.map = texture;
@@ -254,7 +284,7 @@ function initial_setup (container){
         girar(container, obj);
     })
 
-    loader.load('./obj/static/sofa(camarote)-min.obj', function (obj) {
+    loader_sofa.load('./obj/static/sofa(camarote)-min.obj', function (obj) {
         obj.traverse( function ( child ) {
             if ( child instanceof THREE.Mesh ) {
                 child.material.map = texture;
@@ -269,9 +299,10 @@ function initial_setup (container){
     })
 
     return {
-        scene : scene,
-        camera : camera,
-        renderer : renderer,
+        loaded: loaded,
+        scene: scene,
+        camera: camera,
+        renderer: renderer,
     }
 }
 
@@ -335,7 +366,7 @@ function select_type (){
     });
 
     $("input[name=tipo]").click(function(){
-        val = this.id; 
+        val = this.id;
         val = val[3]; // Modo 1 o 2 del mueble
         grupo = $(".mueble").val();
         show_object_by_id(grupo,val);
