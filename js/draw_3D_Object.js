@@ -5,6 +5,7 @@ var showed = false;
 function draw_3D_Object (container) {
 
     elements = initial_setup(container);
+    select_type();
 
 }
 
@@ -104,10 +105,6 @@ function initial_setup (container){
     var width = 600;
     var height = 500;
 
-    $("#menu_muebles").val(1);
-    radio = document.getElementById("opt1");
-    radio.checked = true;
-
     // Creamos el objeto a "renderear" y lo agregamos al DOM
     var renderer_canvas = document.getElementById(container);
     var renderer = new THREE.WebGLRenderer({canvas: container,
@@ -165,9 +162,6 @@ function initial_setup (container){
     }, function onProgress (item, loaded, total){
         console.log(item, loaded, total);
     });
-
-    document.getElementById("controles").style.display = "";
-    select_type();
 
     // Cargamos la textura
     var texture_1 = new THREE.Texture();
@@ -342,8 +336,12 @@ function showObject(obj, show){
 }
 
 function select_type (){
-    $( "#menu_muebles" ).change(menu_callback);
+    $("#menu_muebles").val(1);
+    radio = document.getElementById("opt1");
+    radio.checked = true;
 
+    $( "#menu_muebles" ).change(menu_callback);
+    menu_callback();
     $("input[name=tipo]").click(function(){
         val = this.id;
         val = val[3]; // Modo 1 o 2 del mueble
