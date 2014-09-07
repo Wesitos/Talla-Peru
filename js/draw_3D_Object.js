@@ -346,7 +346,6 @@ function select_type (){
         val = this.id;
         val = val[3]; // Modo 1 o 2 del mueble
         grupo = $("#menu_muebles").val();
-        console.log();
         show_object_by_id(grupo,val);
     })
 
