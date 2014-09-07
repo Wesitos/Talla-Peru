@@ -270,7 +270,7 @@ function initial_setup (container){
         scene.add(obj);
         girar(container, obj);
     })
-    
+
     // Sofa-camarote
     loader_sofa.load('./obj/static/camarote(sofa)-min.obj', function (obj) {
         obj.traverse( function ( child ) {
@@ -382,6 +382,7 @@ function menu_callback(){
     var loading_obj = document.getElementById("loading");
     var dim_div = document.getElementById("dim_div");
     var menu_val = document.getElementById("menu_muebles").value;
+    var controles = document.getElementById("controles");
 
     var name;
     var val1;
@@ -421,7 +422,8 @@ function menu_callback(){
             loading_obj.style.display = "none";
             canvas_obj.style.display = "";
 
-            //Muestra los controles de dimensionado
+            //Muestra los controles
+            controles.style.display = "";
             if (show_dim_controls)
             {dim_div.style.display = "";}
             else
@@ -429,7 +431,7 @@ function menu_callback(){
 
             //Muestra el modelo
             show_object_by_id(menu_val,1);
-            
+
             //Cambia los radio button
             radio = document.getElementById("opt1").checked = true;
             $('label[for=opt1]').html(val1);
@@ -438,11 +440,12 @@ function menu_callback(){
         else{
             loading_obj.style.display = "";
             canvas_obj.style.display = "none";
-            dim_div.style.display = "none"
+            controles.style.display = "none";
+            dim_div.style.display = "none";
             setTimeout(loadingScreenTimeout, 200);
         }
     }
-    
+
     loadingScreenTimeout();
 
 }
