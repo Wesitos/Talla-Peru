@@ -100,7 +100,6 @@ function girar(container, object){
     })}
 
 function initial_setup (container){
-    //Configuramos la camara y el renderer inicial
 
     var width = 600;
     var height = 500;
@@ -110,10 +109,11 @@ function initial_setup (container){
     radio.checked = true;
 
     // Creamos el objeto a "renderear" y lo agregamos al DOM
-    var renderer = new THREE.WebGLRenderer({alpha: true});
+    var renderer_canvas = document.getElementById(container);
+    var renderer = new THREE.WebGLRenderer({canvas: container,
+                                            alpha: true,
+                                           });
     renderer.setSize(width,height)
-    container.appendChild(renderer.domElement);
-
 
     //Creamos la camara que va mostrar la escena
     var camera = new THREE.PerspectiveCamera(30, width/height, 0.2, 1000);
@@ -136,15 +136,6 @@ function initial_setup (container){
                   sofa: false,
                   texture: false,
                 };
-    function is_loaded(x){
-        if(x){
-            $("canvas").show();
-            $("#loading").hide();
-        }else{
-            $("canvas").hide();
-            $("#loading").show();
-        }
-    }
 
     var manager_texture = new THREE.LoadingManager(function onLoad(){
         elements.loaded.texture = true;
@@ -155,34 +146,30 @@ function initial_setup (container){
 
     var manager_mesa = new THREE.LoadingManager(function onLoad(){
         elements.loaded.mesa = true;
-        is_loaded(true);
+        is_loaded("mesa");
     }, function onProgress (item, loaded, total){
         console.log(item, loaded, total);
-        is_loaded(false);
     });
 
     var manager_librero = new THREE.LoadingManager(function onLoad(){
         elements.loaded.librero = true;
-        is_loaded(true);
+        is_loaded("librero");
     }, function onProgress (item, loaded, total){
         console.log(item, loaded, total);
-        is_loaded(false);
     });
 
     var manager_escritorio = new THREE.LoadingManager(function onLoad(){
         elements.loaded.escritorio = true;
-        is_loaded(false);
+        is_loaded("escritorio");
     }, function onProgress (item, loaded, total){
         console.log(item, loaded, total);
-        is_loaded(false);
     });
 
     var manager_sofa = new THREE.LoadingManager(function onLoad(){
         elements.loaded.sofa = true;
-        is_loaded(false);
+        is_loaded("sofa");
     }, function onProgress (item, loaded, total){
         console.log(item, loaded, total);
-        is_loaded(false);
     });
 
     document.getElementById("controles").style.display = "";
@@ -426,4 +413,20 @@ function show_object_by_id(grupo,tipo){
     render();
 
 
+}
+
+function menu_calback(){}
+
+function is_loaded(name){
+    canvas_obj = document.getElementById("canvas");
+    loading_obj = document.getElementById("loading");
+    //    if ()
+
+    // if(x){
+    //     $("canvas").show();
+    //     $("#loading").hide();
+    // }else{
+    //     $("canvas").hide();
+    //     $("#loading").show();
+    // }
 }
