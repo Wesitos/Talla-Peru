@@ -7,21 +7,22 @@
     <link rel="stylesheet" type="text/css" href="css/index.css">
   </head>
   <body>
-         <p>Talla Perú</p>
+    <p>Talla Perú</p>
     <div class="contenedor">
       <div id=muebles>
         <canvas id="renderer_canvas" style="display:inline;"></canvas>
         <img id="loading" src="img/loading.gif"/>
       </div>
       
+      <select id="menu_muebles">
+        <option value="1">Mesa</option>
+        <option value="2">Librero</option>
+        <option value="3">Escritorio</option>
+        <option value="4">Sofa</option>
+      </select>
+
       <div id="controles">
         
-        <select id="menu_muebles">
-          <option value="1">Mesa</option>
-          <option value="2">Librero</option>
-          <option value="3">Escritorio</option>
-          <option value="4">Sofa</option>
-        </select>
         <div id="options">
           
           <input type="radio" id="opt1" name="tipo"/>
@@ -47,15 +48,15 @@
             <span>m</span>
           </div>
         </div>
-            
-        </div>
-    
-    <script src="js/vendor/three.min.js"></script>
-    <script src="js/vendor/OBJLoader.js"></script>
-    <script src="js/vendor/jquery-1.11.0.min.js"></script>
-    <script src="js/vendor/jquery.event.move.js"></script>
-    <script src="js/draw_3D_Object.js"></script>
-    <script src="js/main.js"></script>
-    
+        
+      </div>
+      
+      <script src="js/vendor/three.min.js"></script>
+      <script src="js/vendor/OBJLoader.js"></script>
+      <script src="js/vendor/jquery-1.11.0.min.js"></script>
+      <script src="js/vendor/jquery.event.move.js"></script>
+      <script src="js/draw_3D_Object.js"></script>
+      <script src="js/main.js"></script>
+      
   </body>
 </html>
