@@ -377,6 +377,7 @@ function show_object_by_id(grupo,tipo){
 }
 
 function menu_callback(){
+    clearTimeout(elements.timer);
     var canvas_obj = document.getElementById("renderer_canvas");
     var loading_obj = document.getElementById("loading");
     var dim_div = document.getElementById("dim_div");
@@ -441,7 +442,7 @@ function menu_callback(){
             canvas_obj.style.display = "none";
             controles.style.display = "none";
             dim_div.style.display = "none";
-            setTimeout(loadingScreenTimeout, 200);
+            elements.timer = setTimeout(loadingScreenTimeout, 200);
         }
     }
 
