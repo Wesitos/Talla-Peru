@@ -191,7 +191,6 @@ function initial_setup (container){
         scene.add(obj);
         girar(container, obj);
         scale(container,obj);
-        render();
     });
 
     loader_mesa.load('./obj/mesa-centro.obj', function (obj) {
@@ -415,7 +414,7 @@ function menu_callback(){
     }
     // Verificamos si los objetos estan cargados
     var loadingScreenTimeout = function loadingScreenTimeout(){
-        if (elements.loaded[name]){
+        if (elements.loaded[name] && elements.loaded.texture){
             // Oculta el loading Screen
             loading_obj.style.display = "none";
             canvas_obj.style.display = "";
