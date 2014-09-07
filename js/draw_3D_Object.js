@@ -91,7 +91,7 @@ function toogleObj(obj1, obj2){
 }
 
 function girar(container, object){
-    // Event handler para girar la mesa
+    //Event handler para girar la mesa
 
     $(container).bind('move', function (e) {
         object.rotation.y += e.deltaX * 0.005;
@@ -104,7 +104,7 @@ function initial_setup (container){
     var width = 600;
     var height = 500;
 
-    $(".mueble").val(1);
+    $("#menu_muebles").val(1);
     radio = document.getElementById("opt1");
     radio.checked = true;
 
@@ -115,10 +115,10 @@ function initial_setup (container){
                                            });
     renderer.setSize(width,height)
 
-    //Creamos la camara que va mostrar la escena
+    // Creamos la camara que va mostrar la escena
     var camera = new THREE.PerspectiveCamera(30, width/height, 0.2, 1000);
     camera.position.z = 200;
-    //Creamos la escena que va mostar el objeto
+    // Creamos la escena que va mostar el objeto
     var scene = new THREE.Scene();
     scene.add(camera);
 
@@ -128,8 +128,6 @@ function initial_setup (container){
     scene.add(directionalLight);
 
     // Loading managers
-    is_loaded(false);
-
     var loaded ={ mesa: false,
                   librero: false,
                   escritorio: false,
@@ -146,28 +144,24 @@ function initial_setup (container){
 
     var manager_mesa = new THREE.LoadingManager(function onLoad(){
         elements.loaded.mesa = true;
-        is_loaded("mesa");
     }, function onProgress (item, loaded, total){
         console.log(item, loaded, total);
     });
 
     var manager_librero = new THREE.LoadingManager(function onLoad(){
         elements.loaded.librero = true;
-        is_loaded("librero");
     }, function onProgress (item, loaded, total){
         console.log(item, loaded, total);
     });
 
     var manager_escritorio = new THREE.LoadingManager(function onLoad(){
         elements.loaded.escritorio = true;
-        is_loaded("escritorio");
     }, function onProgress (item, loaded, total){
         console.log(item, loaded, total);
     });
 
     var manager_sofa = new THREE.LoadingManager(function onLoad(){
         elements.loaded.sofa = true;
-        is_loaded("sofa");
     }, function onProgress (item, loaded, total){
         console.log(item, loaded, total);
     });
@@ -323,7 +317,7 @@ function initial_setup (container){
 }
 
 function render () {
-    //Render con los nuevos parametros de renderer
+    // Render con los nuevos parametros de renderer
     renderer = elements.renderer;
     camera = elements.camera;
     scene = elements.scene;
@@ -348,43 +342,13 @@ function showObject(obj, show){
 }
 
 function select_type (){
-
-    var val1 = 'a';
-    var val2 = 'a';
-    $( ".mueble" ).change(function() {
-        k = this.value;
-        var dim_controls = document.getElementById("dim_div");
-        dim_controls.style.display = "none";
-        switch (k){
-        case "1":
-            val1 = 'Mesa Comedor';
-            val2 = 'Mesa Centro';
-            dim_controls.style.display = "";
-            break;
-        case "2":
-            val1 = 'Librero';
-            val2 = 'Cama';
-            break;
-        case "3":
-            val1 = 'Escritorio';
-            val2 = 'Cama';
-            break;
-        case "4":
-            val1 = 'Sofa';
-            val2 = 'Camarote';
-            break;
-        }
-        show_object_by_id(k,1);
-        radio = document.getElementById("opt1");
-        radio.checked = true;
-        $('label[for=opt1]').html(val1);
-        $('label[for=opt2]').html(val2);
-    });
+    $( "#menu_muebles" ).change(menu_callback);
 
     $("input[name=tipo]").click(function(){
         val = this.id;
         val = val[3]; // Modo 1 o 2 del mueble
-        grupo = $(".mueble").val();
+        grupo = $("#menu_muebles").val();
+        console.log();
         show_object_by_id(grupo,val);
     })
 
@@ -402,9 +366,9 @@ function show_object_by_id(grupo,tipo){
     ]
     h = tipo*(-1)+1;
     obj_show = id_object[grupo][tipo];
-    //obj_hide = id_object[grupo][h];
+    obj_hide = id_object[grupo][h];
 
-    //obj_show es el objeto que debe ser mostrado
+    // obj_show es el objeto que debe ser mostrado
     if (showed)
     {showObject(elements[showed],false);}
     showObject(elements[obj_show],true);
@@ -415,18 +379,72 @@ function show_object_by_id(grupo,tipo){
 
 }
 
-function menu_calback(){}
+function menu_callback(){
+    var canvas_obj = document.getElementById("renderer_canvas");
+    var loading_obj = document.getElementById("loading");
+    var dim_div = document.getElementById("dim_div");
+    var menu_val = document.getElementById("menu_muebles").value;
 
-function is_loaded(name){
-    canvas_obj = document.getElementById("canvas");
-    loading_obj = document.getElementById("loading");
-    //    if ()
+    var name;
+    var val1;
+    var val2;
+    var show_dim_controls;
 
-    // if(x){
-    //     $("canvas").show();
-    //     $("#loading").hide();
-    // }else{
-    //     $("canvas").hide();
-    //     $("#loading").show();
-    // }
+    switch (menu_val){
+    case "1":
+        name = "mesa";
+        val1 = 'Mesa Comedor';
+        val2 = 'Mesa Centro';
+        show_dim_controls = true;
+        break;
+    case "2":
+        name = "librero";
+        val1 = 'Librero';
+        val2 = 'Cama';
+        show_dim_controls = false;
+        break;
+    case "3":
+        name = "escritorio";
+        val1 = 'Escritorio';
+        val2 = 'Cama';
+        show_dim_controls = false;
+        break;
+    case "4":
+        name = "sofa";
+        val1 = 'Sofa';
+        val2 = 'Camarote';
+        show_dim_controls = false;
+        break;
+    }
+    // Verificamos si los objetos estan cargados
+    var loadingScreenTimeout = function loadingScreenTimeout(){
+        if (elements.loaded[name]){
+            // Oculta el loading Screen
+            loading_obj.style.display = "none";
+            canvas_obj.style.display = "";
+
+            //Muestra los controles de dimensionado
+            if (show_dim_controls)
+            {dim_div.style.display = "";}
+            else
+            {dim_div.style.display = "none";}
+
+            //Muestra el modelo
+            show_object_by_id(menu_val,1);
+            
+            //Cambia los radio button
+            radio = document.getElementById("opt1").checked = true;
+            $('label[for=opt1]').html(val1);
+            $('label[for=opt2]').html(val2);
+        }
+        else{
+            loading_obj.style.display = "";
+            canvas_obj.style.display = "none";
+            dim_div.style.display = "none"
+            setTimeout(loadingScreenTimeout, 200);
+        }
+    }
+    
+    loadingScreenTimeout();
+
 }
