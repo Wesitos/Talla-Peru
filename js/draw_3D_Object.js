@@ -3,23 +3,20 @@ var global;
 var showed = false;
 
 function draw_3D_Object (container) {
-
     elements = initial_setup(container);
     select_type();
-
 }
 
 function scale(container, object){
-
     var nomx = 1,
-        nomy = 2,
-        nomz = 0.75;
+    nomy = 2,
+    nomz = 0.75;
     var maxx = 1.8,
-        maxy = 2.5,
-        maxz = 0.85;
+    maxy = 2.5,
+    maxz = 0.85;
     var minx = 0.8,
-        miny = 1.6,
-        minz = 0.6;
+    miny = 1.6,
+    minz = 0.6;
 
     $("#controlx").bind("change",function(){
         var value = $(this).val()/nomx;
@@ -46,10 +43,10 @@ function scale(container, object){
             $(this).val(maxy)
         }
         else
-        if(value < miny/nomy){
-            value = miny/nomy;
-            $(this).val(miny)
-        }
+            if(value < miny/nomy){
+                value = miny/nomy;
+                $(this).val(miny)
+            }
 
         object.scale.z = value;
 
@@ -163,6 +160,7 @@ function initial_setup (container){
         console.log(item, loaded, total);
     });
 
+    //--------------------------------
     // Cargamos la textura
     var texture_1 = new THREE.Texture();
     var texture_2 = new THREE.Texture();
