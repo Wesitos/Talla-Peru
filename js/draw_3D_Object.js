@@ -163,7 +163,22 @@ function initial_setup (container){
     //--------------------------------
     // Cargamos la textura
     var texture_1 = new THREE.Texture();
+    texture_1.wrapS = THREE.RepeatWrapping;
+    texture_1.wrapT = THREE.RepeatWrapping;
+    texture_1.repeat.set(1,1);
+
     var texture_2 = new THREE.Texture();
+    texture_2.wrapS = texture_2.wrapT = THREE.RepeatWrapping;
+    texture_2.repeat.set(2,2);
+
+    // Material para el colchon
+    var colchon_material = new THREE.MeshLambertMaterial( {
+        color: 0xc0c0c0,
+        ambient: 0xffffff,
+        emmisive: 0x202020,
+        map: texture_2,
+    } );
+
     var loader_texture = new THREE.ImageLoader(manager_texture);
     loader_texture.load( './img/wood.jpg', function ( image ) {
         texture_1.image = image;
@@ -179,6 +194,7 @@ function initial_setup (container){
     var loader_librero = new THREE.OBJLoader(manager_librero);
     var loader_escritorio = new THREE.OBJLoader(manager_escritorio);
     var loader_sofa = new THREE.OBJLoader(manager_sofa);
+
     loader_mesa.load('./obj/mesa-comedor.obj', function (obj) {
         obj.traverse( function ( child ) {
             if ( child instanceof THREE.Mesh ) {
@@ -211,7 +227,7 @@ function initial_setup (container){
         obj.traverse( function ( child ) {
             if ( child instanceof THREE.Mesh ) {
                 if(child.name == "colchon")
-                {child.material.map = texture_2;}
+                {child.material = colchon_material;}
                 else
                 {child.material.map = texture_1;}
             }});
@@ -226,7 +242,7 @@ function initial_setup (container){
         obj.traverse( function ( child ) {
             if ( child instanceof THREE.Mesh ) {
                 if(child.name == "colchon")
-                {child.material.map = texture_2;}
+                {child.material = colchon_material;}
                 else
                 {child.material.map = texture_1;}
             }});
@@ -242,7 +258,7 @@ function initial_setup (container){
         obj.traverse( function ( child ) {
             if ( child instanceof THREE.Mesh ) {
                 if(child.name == "colchon")
-                {child.material.map = texture_2;}
+                {child.material = colchon_material;}
                 else
                 {child.material.map = texture_1;}
             }});
@@ -257,7 +273,7 @@ function initial_setup (container){
         obj.traverse( function ( child ) {
             if ( child instanceof THREE.Mesh ) {
                 if(child.name == "colchon")
-                {child.material.map = texture_2;}
+                {child.material = colchon_material;}
                 else
                 {child.material.map = texture_1;}
             }});
@@ -273,7 +289,7 @@ function initial_setup (container){
         obj.traverse( function ( child ) {
             if ( child instanceof THREE.Mesh ) {
                 if(child.name == "colchon")
-                {child.material.map = texture_2;}
+                {child.material = colchon_material;}
                 else
                 {child.material.map = texture_1;}
             }});
@@ -288,7 +304,7 @@ function initial_setup (container){
         obj.traverse( function ( child ) {
             if ( child instanceof THREE.Mesh ) {
                 if(child.name == "colchon")
-                {child.material.map = texture_2;}
+                {child.material = colchon_material;}
                 else
                 {child.material.map = texture_1;}
             }});
