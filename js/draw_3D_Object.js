@@ -169,13 +169,12 @@ function initial_setup (container){
 
     var texture_2 = new THREE.Texture();
     texture_2.wrapS = texture_2.wrapT = THREE.RepeatWrapping;
-    texture_2.repeat.set(2,2);
+    texture_2.repeat.set(8,4);
 
     // Material para el colchon
     var colchon_material = new THREE.MeshLambertMaterial( {
-        color: 0xc0c0c0,
-        ambient: 0xffffff,
-        emmisive: 0x202020,
+        color: 0xf2f2f2,
+        emissive: 0x333333,
         map: texture_2,
     } );
 
