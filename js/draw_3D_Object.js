@@ -106,7 +106,7 @@ function initial_setup (container){
     var renderer_canvas = document.getElementById(container);
     var renderer = new THREE.WebGLRenderer({canvas: container,
                                             alpha: true,
-                                            antialias: true,
+                                            //antialias: true,
                                            });
     renderer.setSize(width,height)
 
