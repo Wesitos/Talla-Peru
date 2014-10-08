@@ -97,10 +97,7 @@ function girar(container, object){
         render();
     })};
 
-function initial_setup (container){
-
-    var width = 600;
-    var height = 500;
+function initial_setup (container, width, heigh){
 
     // Creamos el objeto a "renderear" y lo agregamos al DOM
     var renderer_canvas = document.getElementById(container);
@@ -122,41 +119,9 @@ function initial_setup (container){
     directionalLight.position.set(0, 1, 1);
     scene.add(directionalLight);
 
-    // Loading managers
-    var loaded ={ mesa: false,
-                  librero: false,
-                  escritorio: false,
-                  sofa: false,
-                  texture: false
-                };
-
     var manager_texture = new THREE.LoadingManager(function onLoad(){
         elements.loaded.texture = true;
         render();
-    }, function onProgress (item, loaded, total){
-        console.log(item, loaded, total);
-    });
-
-    var manager_mesa = new THREE.LoadingManager(function onLoad(){
-        elements.loaded.mesa = true;
-    }, function onProgress (item, loaded, total){
-        console.log(item, loaded, total);
-    });
-
-    var manager_librero = new THREE.LoadingManager(function onLoad(){
-        elements.loaded.librero = true;
-    }, function onProgress (item, loaded, total){
-        console.log(item, loaded, total);
-    });
-
-    var manager_escritorio = new THREE.LoadingManager(function onLoad(){
-        elements.loaded.escritorio = true;
-    }, function onProgress (item, loaded, total){
-        console.log(item, loaded, total);
-    });
-
-    var manager_sofa = new THREE.LoadingManager(function onLoad(){
-        elements.loaded.sofa = true;
     }, function onProgress (item, loaded, total){
         console.log(item, loaded, total);
     });
@@ -184,6 +149,8 @@ function initial_setup (container){
         texture_1.image = image;
         texture_1.needsUpdate = true;
     } );
+
+
     loader_texture.load( './img/tela.jpg', function ( image ) {
         texture_2.image = image;
         texture_2.needsUpdate = true;
@@ -195,125 +162,20 @@ function initial_setup (container){
     var loader_escritorio = new THREE.OBJLoader(manager_escritorio);
     var loader_sofa = new THREE.OBJLoader(manager_sofa);
 
-    loader_mesa.load('./obj/mesa/mesa-comedor.obj', function (obj) {
-        obj.traverse( function ( child ) {
-            if ( child instanceof THREE.Mesh ) {
-                child.material.map = texture_1;
-            }});
-        obj.name = "mesa_comedor";
-        showObject(obj, true);
-        showed = "mesa_comedor";
-        elements.mesa_comedor = obj;
-        scene.add(obj);
-        girar(container, obj);
-        scale(container,obj);
-    });
-
-    loader_mesa.load('./obj/mesa/mesa-centro.obj', function (obj) {
-        obj.traverse( function ( child ) {
-            if ( child instanceof THREE.Mesh ) {
-                child.material.map = texture_1;
-            }});
-        obj.name = "mesa_centro";
-        showObject(obj, false);
-        elements.mesa_centro = obj;
-        scene.add(obj);
-
-        girar(container, obj);
-        scale(container,obj);
-    });
-
-    loader_librero.load('./obj/librero/librero(cama).obj', function (obj) {
-        obj.traverse( function ( child ) {
-            if ( child instanceof THREE.Mesh ) {
-                if(child.name == "colchon")
-                {child.material = colchon_material;}
-                else
-                {child.material.map = texture_1;}
-            }});
-        obj.name = "cama_librero";
-        showObject(obj, false);
-        elements.cama_librero = obj;
-        scene.add(obj);
-        girar(container, obj);
-    });
-
-    loader_librero.load('./obj/librero/librero(cerrado).obj', function (obj) {
-        obj.traverse( function ( child ) {
-            if ( child instanceof THREE.Mesh ) {
-                if(child.name == "colchon")
-                {child.material = colchon_material;}
-                else
-                {child.material.map = texture_1;}
-            }});
-        obj.name = "librero";
-        showObject(obj, false);
-        elements.librero = obj;
-        scene.add(obj);
-        girar(container, obj);
-    });
-
-    // Cama-escritorio
-    loader_escritorio.load('./obj/escritorio/camascritorio(cama).obj', function (obj) {
-        obj.traverse( function ( child ) {
-            if ( child instanceof THREE.Mesh ) {
-                if(child.name == "colchon")
-                {child.material = colchon_material;}
-                else
-                {child.material.map = texture_1;}
-            }});
-        obj.name = "cama";
-        showObject(obj, false);
-        elements.cama = obj;
-        scene.add(obj);
-        girar(container, obj);
-    });
-
-    loader_escritorio.load('./obj/escritorio/camascritorio(escritorio).obj', function (obj) {
-        obj.traverse( function ( child ) {
-            if ( child instanceof THREE.Mesh ) {
-                if(child.name == "colchon")
-                {child.material = colchon_material;}
-                else
-                {child.material.map = texture_1;}
-            }});
-        obj.name = "escritorio";
-        showObject(obj, false);
-        elements.escritorio = obj;
-        scene.add(obj);
-        girar(container, obj);
-    });
-
-    // Sofa-camarote
-    loader_sofa.load('./obj/sofa/sofamarote(camarote).obj', function (obj) {
-        obj.traverse( function ( child ) {
-            if ( child instanceof THREE.Mesh ) {
-                if(child.name == "colchon")
-                {child.material = colchon_material;}
-                else
-                {child.material.map = texture_1;}
-            }});
-        obj.name = "camarote";
-        showObject(obj, false);
-        elements.camarote = obj;
-        scene.add(obj);
-        girar(container, obj);
-    });
-
-    loader_sofa.load('./obj/sofa/sofamarote(sofa).obj', function (obj) {
-        obj.traverse( function ( child ) {
-            if ( child instanceof THREE.Mesh ) {
-                if(child.name == "colchon")
-                {child.material = colchon_material;}
-                else
-                {child.material.map = texture_1;}
-            }});
-        obj.name = "sofa";
-        showObject(obj, false);
-        elements.sofa = obj;
-        scene.add(obj);
-        girar(container, obj);
-    });
+    modelo.forEach( function (item){
+        loader_mesa.load(item[estado1], function (obj) {
+            obj.traverse( function ( child ) {
+                if ( child instanceof THREE.Mesh ) {
+                    child.material.map = texture_1;
+                }});
+            obj.name = item.nombre;
+            showObject(obj, true);
+            elements[item.nombre] = obj;
+            scene.add(obj);
+            item.loaded = true;
+            girar(container, obj);
+            scale(container,obj);
+        })})
 
     return {
         loaded: loaded,
@@ -385,7 +247,6 @@ function show_object_by_id(grupo,tipo){
     showed = obj_show;
 
     render();
-
 
 }
 
