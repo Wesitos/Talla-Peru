@@ -22,18 +22,18 @@ function scale(container, object){
         var value = $(this).val()/nomx;
 
         if(value > maxx/nomx){
-            value = maxx/nomx
-            $(this).val(maxx)
+            value = maxx/nomx;
+            $(this).val(maxx);
         }
         if(value < minx/nomx){
-            value = minx/nomx
-            $(this).val(minx)
+            value = minx/nomx;
+            $(this).val(minx);
         }
 
         object.scale.x = value;
         mesa = elements.mesa;
-        render()
-    })
+        render();
+    });
 
     $("#controly").bind("change",function(){
         var value = $(this).val()/nomy;
@@ -51,26 +51,26 @@ function scale(container, object){
         object.scale.z = value;
 
         mesa = elements.mesa;
-        render()
-    })
+        render();
+    });
 
     $("#controlz").bind("change",function(){
         var value = $(this).val()/nomz;
 
         if(value > maxz/nomz){
-            value = maxz/nomz
-            $(this).val(maxz)
+            value = maxz/nomz;
+            $(this).val(maxz);
         }
         if(value < minz/nomz){
-            value = minz/nomz
-            $(this).val(minz)
+            value = minz/nomz;
+            $(this).val(minz);
         }
 
         object.scale.y = value;
 
         mesa = elements.mesa;
-        render()
-    })
+        render();
+    });
 
 }
 
@@ -84,8 +84,8 @@ function toogleObj(obj1, obj2){
             showObject(obj1, true);
             showObject(obj2, false);
         }
-        render()
-    })
+        render();
+    });
 }
 
 function girar(container, object){
@@ -95,7 +95,7 @@ function girar(container, object){
         object.rotation.y += e.deltaX * 0.005;
         object.rotation.x += e.deltaY * 0.005;
         render();
-    })}
+    })};
 
 function initial_setup (container){
 
@@ -105,10 +105,10 @@ function initial_setup (container){
     // Creamos el objeto a "renderear" y lo agregamos al DOM
     var renderer_canvas = document.getElementById(container);
     var renderer = new THREE.WebGLRenderer({canvas: container,
-                                            alpha: true,
+                                            alpha: true
                                             //antialias: true,
                                            });
-    renderer.setSize(width,height)
+    renderer.setSize(width,height);
 
     // Creamos la camara que va mostrar la escena
     var camera = new THREE.PerspectiveCamera(30, width/height, 0.2, 1000);
@@ -127,12 +127,12 @@ function initial_setup (container){
                   librero: false,
                   escritorio: false,
                   sofa: false,
-                  texture: false,
+                  texture: false
                 };
 
     var manager_texture = new THREE.LoadingManager(function onLoad(){
         elements.loaded.texture = true;
-        render()
+        render();
     }, function onProgress (item, loaded, total){
         console.log(item, loaded, total);
     });
@@ -176,7 +176,7 @@ function initial_setup (container){
     var colchon_material = new THREE.MeshLambertMaterial( {
         color: 0xf2f2f2,
         emissive: 0x333333,
-        map: texture_2,
+        map: texture_2
     } );
 
     var loader_texture = new THREE.ImageLoader(manager_texture);
@@ -187,7 +187,7 @@ function initial_setup (container){
     loader_texture.load( './img/tela.jpg', function ( image ) {
         texture_2.image = image;
         texture_2.needsUpdate = true;
-    } )
+    } );
 
     // Cargamos el modelo
     var loader_mesa = new THREE.OBJLoader(manager_mesa);
@@ -267,7 +267,7 @@ function initial_setup (container){
         elements.cama = obj;
         scene.add(obj);
         girar(container, obj);
-    })
+    });
 
     loader_escritorio.load('./obj/escritorio/camascritorio(escritorio).obj', function (obj) {
         obj.traverse( function ( child ) {
@@ -282,7 +282,7 @@ function initial_setup (container){
         elements.escritorio = obj;
         scene.add(obj);
         girar(container, obj);
-    })
+    });
 
     // Sofa-camarote
     loader_sofa.load('./obj/sofa/sofamarote(camarote).obj', function (obj) {
@@ -298,7 +298,7 @@ function initial_setup (container){
         elements.camarote = obj;
         scene.add(obj);
         girar(container, obj);
-    })
+    });
 
     loader_sofa.load('./obj/sofa/sofamarote(sofa).obj', function (obj) {
         obj.traverse( function ( child ) {
@@ -313,14 +313,14 @@ function initial_setup (container){
         elements.sofa = obj;
         scene.add(obj);
         girar(container, obj);
-    })
+    });
 
     return {
         loaded: loaded,
         scene: scene,
         camera: camera,
         renderer: renderer,
-    }
+    };
 }
 
 function render () {
@@ -360,7 +360,7 @@ function select_type (){
         val = val[3]; // Modo 1 o 2 del mueble
         grupo = $("#menu_muebles").val();
         show_object_by_id(grupo,val);
-    })
+    });
 
 
 }
@@ -373,7 +373,7 @@ function show_object_by_id(grupo,tipo){
         ["librero", "cama_librero"],
         ["escritorio", "cama"],
         ["sofa", "camarote"],
-    ]
+    ];
     h = tipo*(-1)+1;
     obj_show = id_object[grupo][tipo];
     obj_hide = id_object[grupo][h];
@@ -457,7 +457,7 @@ function menu_callback(){
             dim_div.style.display = "none";
             elements.timer = setTimeout(loadingScreenTimeout, 200);
         }
-    }
+    };
 
     loadingScreenTimeout();
 
