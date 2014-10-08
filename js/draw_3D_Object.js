@@ -145,10 +145,11 @@ function initial_setup (container, width, heigh){
     } );
 
     var loader_texture = new THREE.ImageLoader(manager_texture);
-    loader_texture.load( './img/wood.jpg', function ( image ) {
-        texture_1.image = image;
-        texture_1.needsUpdate = true;
-    } );
+    texturas.forEach(function (item) {
+        loader_texture. load ( item.path, function ( image ) {
+texture_1.image = image;
+            texture_1.needsUpdate = true;
+        } );})
 
 
     loader_texture.load( './img/tela.jpg', function ( image ) {
@@ -162,8 +163,8 @@ function initial_setup (container, width, heigh){
     var loader_escritorio = new THREE.OBJLoader(manager_escritorio);
     var loader_sofa = new THREE.OBJLoader(manager_sofa);
 
-    modelo.forEach( function (item){
-        loader_mesa.load(item[estado1], function (obj) {
+    var load_objeto = function load_objeto(item, num){
+        loader_mesa.load(item["estado" + num], function (obj) {
             obj.traverse( function ( child ) {
                 if ( child instanceof THREE.Mesh ) {
                     child.material.map = texture_1;
@@ -172,10 +173,18 @@ function initial_setup (container, width, heigh){
             showObject(obj, true);
             elements[item.nombre] = obj;
             scene.add(obj);
-            item.loaded = true;
+            item["loaded" + num] = true ;
             girar(container, obj);
             scale(container,obj);
-        })})
+        })
+    }
+
+    modelo.forEach( function (item){
+        
+        if (item.estado2){
+
+        }
+    })
 
     return {
         loaded: loaded,
