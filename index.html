@@ -9,47 +9,20 @@
   </head>
   <body>
     <p>Talla Perú</p>
-    <div class="contenedor">
+
+    <div id="modelo">
+
       <div id=muebles>
         <canvas id="renderer_canvas" style="display:inline;"></canvas>
         <img id="loading" style="display:none;" src="img/loading.gif"/>
       </div>
       
-      <select id="menu_muebles">
-        <option value="1">Mesa</option>
-        <option value="2">Librero</option>
-        <option value="3">Escritorio</option>
-        <option value="4">Sofa</option>
-      </select>
+      
 
-      <div id="controles">
-        
-        <div id="options">
-          
-          <input type="radio" id="opt1" name="tipo"/>
-          <label for="opt1">Mesa-Comedor</label>
-          <input type="radio" id="opt2" name="tipo"/>
-          <label for="opt2">Mesa-Centro</label>
-        </div>
-
-        <div id="dim_div">
-          <div id="control">
-            <span>Ancho</span>
-            <input type="number" id="controlx" value="1.0" step="0.1" min="0.8" max= "1.8">
-            <span>m</span>
-          </div>
-          <div id="control">
-            <span>Largo</span>
-            <input type="number" id="controly" value="2.0" step="0.1" min="1.6" max="2.5">
-            <span>m</span>
-          </div>
-          <div id="control">
-            <span>Alto</span>
-            <input type="number" id="controlz" value="0.75" step="0.05" min="0.65" max="0.85">
-            <span>m</span>
-          </div>
-        </div>
-        
+      <div id="controles" style="border:solid; width:500px;height:50px;">
+        <input name="estado" type="radio" value="cama"/> Elemento 1
+        <input name="estado" type="radio" value="librero"/> Elemento 2
+        <input name="estado" type="radio" value="mesa"/> Elemento 3             
       </div>
       
       <script src="js/vendor/three.min.js"></script>
